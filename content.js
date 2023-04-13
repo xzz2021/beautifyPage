@@ -48,7 +48,7 @@ function createEntry(myapp,id){
 
 
 // create app instance
-// createEntry(zhihu, 'platformzhihu')
+createEntry(zhihu, 'platformzhihu')
 createEntry(csdn, 'platformcsdn')
 
 

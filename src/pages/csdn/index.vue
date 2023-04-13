@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-04-11 14:22:06
  * @LastEditors: xzz
- * @LastEditTime: 2023-04-13 10:07:38
+ * @LastEditTime: 2023-04-13 11:19:03
 -->
 <template>
 
@@ -10,11 +10,14 @@
 <script setup>
 
 
+    const checkExistRemove = (dom) => {
+         const hasDom = $(dom)
+         hasDom.length && hasDom.remove()
+    }
 
-
+    let removeArr = ['.programmer1Box', '#recommendAdBox', '.box-shadow.mb8' ]
             const removeAD = () => {
-                let removeArr = ['.programmer1Box', '#recommendAdBox', '.box-shadow.mb8' ]
-                removeArr.map(item => { $(item).length != 0 && $(item).remove() })
+                removeArr.map(item =>  checkExistRemove(item))
             }
 
 
@@ -24,7 +27,7 @@
                     $('code').attr('style',"user-select: auto;")
                     // $('code').setAttribute("onclick","mdcp.copyCode(event)")
                     // $('.hljs-button').setAttribute("onclick","mdcp.copyCode(event)").setAttribute("data-title","复制");
-                    $('.hljs-button').attr("data-title","复制")
+                    $('.hljs-button').attr("data-title","自由复制")
                 })
  
             }
