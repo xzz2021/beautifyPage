@@ -15,7 +15,8 @@ const comconfig = {
         background: './background.js',
         content: './content.js',
         inject: './inject.js',
-        popup: './src/popup/pop.js'
+        popup: './src/popup/pop.js',
+        options: './src/options/options.js',
     },
     output: {
         filename: (pathData) => {
@@ -36,6 +37,12 @@ const comconfig = {
             template: './src/popup/pop.html', 
             filename: 'popup.html', 
             chunks: ['popup'],   
+            inject: 'body',
+        }), 
+        new HtmlWebpackPlugin({    // 可以实现自动生成新的html并自动导入js
+            template: './src/options/options.html', 
+            filename: 'options.html', 
+            chunks: ['options'],   
             inject: 'body',
         }), 
         new VueLoaderPlugin(),

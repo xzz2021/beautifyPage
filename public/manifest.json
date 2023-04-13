@@ -26,6 +26,7 @@
   "web_accessible_resources": [{
     "resources": ["/js/inject.js","/js/content.js", "/js/content.js.map", "/js/inject.js.map", "/lib/browser-polyfill.js.map"],
     "matches": ["<all_urls>"]
-  }]
+  }],
+  "options_page": "options.html"
 }
 
