@@ -1,3 +1,8 @@
+/*
+ * @Date: 2023-03-27 11:36:17
+ * @LastEditors: xzz
+ * @LastEditTime: 2023-04-13 16:11:54
+ */
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const {wsAutoReloadPlugin} = require('ws-reload-plugin')
@@ -19,7 +24,6 @@ const watchconfig = {
           __VUE_OPTIONS_API__: true,
           __VUE_PROD_DEVTOOLS__: false,
           "AUTHOR": JSON.stringify('xzz2022'),
-          "VERSION": JSON.stringify('1.0.6'),
           'DEBUG': true
         })
     ],

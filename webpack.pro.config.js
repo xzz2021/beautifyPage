@@ -1,3 +1,8 @@
+/*
+ * @Date: 2023-03-27 11:36:17
+ * @LastEditors: xzz
+ * @LastEditTime: 2023-04-13 16:16:49
+ */
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
 
 const webpack = require('webpack')
@@ -41,10 +46,15 @@ const proconfig = {
         new CopyWebpackPlugin({  //实现静态文件的直接复制
             patterns: [             // 需要拷贝的目录或者路径
             {from: 'public/logo.png', to: './logo.png'},
-            {from: 'public/manifestPro.json', to: './manifest.json'}
+            {from: 'public/manifest.json', to: './manifest.json'}
         ]}),
 
         new MiniCssExtractPlugin({
+            // 使用此plugin后, 会分别生成content.css,options.css,popup.css
+            // content.css需要在manifest声明引入,因为content只有js注入,未引入编译后的css文件
+            //  ???其余css会自动注入到相应页面html(可能是内部机制???)
+            //  option和popup是通过 new HtmlWebpackPlugin生成的,,,可能和js一样自动添加<style>标签自动引入
+            //   可能 因为new HtmlWebpackPlugin对js引用内容有作判断处理
             filename: './css/[name].css',
         }),
         //可以定义全局上下文的变量
@@ -53,7 +63,6 @@ const proconfig = {
             __VUE_OPTIONS_API__: true,
             __VUE_PROD_DEVTOOLS__: false,
             "AUTHOR": JSON.stringify('user'),
-            "VERSION": JSON.stringify('0928'),
             'DEBUG': false
           }),
 
@@ -61,7 +70,7 @@ const proconfig = {
     module: {  
         rules: [
             {
-                oneOf:[
+                oneOf:[  //  
                     {
                         test: /\.css$/i,
                         use: [MiniCssExtractPlugin.loader,'css-loader'],  //实现样式代码整合在单独一个文件里, 可以取代style-loader

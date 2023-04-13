@@ -20,7 +20,8 @@
     {
       "matches": ["https://www.google.com/", "https://*.zhihu.com/*", "https://*.csdn.net/*"
       ],
-      "js": ["/js/content.js"]
+      "js": ["/js/content.js"],
+      "css": ["/css/content.css" ]
     }
   ],
   "web_accessible_resources": [{
