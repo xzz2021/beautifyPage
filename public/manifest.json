@@ -1,0 +1,31 @@
+{
+  "name": "【xzz】君臣论-电商插件",
+  "description": "",
+  "version": "1.0.1",
+  "manifest_version": 3,
+  "background": { 
+    "service_worker": "background.js" 
+  },
+  "permissions": ["storage", "activeTab", "tabs", "contextMenus", "scripting", "downloads", "cookies"],
+  "host_permissions":[
+    "https://www.google.com/"
+  ],
+  "action": {
+    "default_title": "popup.html",
+    "default_icon": "logo.png",
+    "default_popup": "popup.html"
+  },
+  "icons": { "16": "logo.png", "48": "logo.png", "128": "logo.png" },
+  "content_scripts": [
+    {
+      "matches": ["https://www.google.com/", "https://*.zhihu.com/*", "https://*.csdn.net/*"
+      ],
+      "js": ["/js/content.js"]
+    }
+  ],
+  "web_accessible_resources": [{
+    "resources": ["/js/inject.js","/js/content.js", "/js/content.js.map", "/js/inject.js.map", "/lib/browser-polyfill.js.map"],
+    "matches": ["<all_urls>"]
+  }]
+}
+

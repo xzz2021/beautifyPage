@@ -102,3 +102,7 @@ dist
 
 # TernJS port file
 .tern-port
+
+xzz2022/
+*copy*
+*.pem
