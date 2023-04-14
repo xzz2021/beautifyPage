@@ -7,9 +7,6 @@
     "service_worker": "background.js" 
   },
   "permissions": ["storage", "activeTab", "tabs", "contextMenus", "scripting", "downloads", "cookies"],
-  "host_permissions":[
-    "https://www.google.com/"
-  ],
   "action": {
     "default_title": "popup.html",
     "default_icon": "logo.png",
@@ -18,7 +15,7 @@
   "icons": { "16": "logo.png", "48": "logo.png", "128": "logo.png" },
   "content_scripts": [
     {
-      "matches": ["https://www.google.com/", "https://*.zhihu.com/*", "https://*.csdn.net/*"
+      "matches": ["https://*.juejin.cn/*", "https://*.zhihu.com/*", "https://*.csdn.net/*"
       ],
       "js": ["/js/content.js"],
       "css": ["/css/content.css" ]

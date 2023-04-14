@@ -53,3 +53,24 @@ textarea{
   background: #179a16;
 }
 }
+
+
+
+.throttle{   //  通过纯css 对按钮点击  进行防抖  控制事件
+
+button{
+  animation: throttle 2s step-end forwards;
+}
+button:active{
+  animation: none;
+}
+@keyframes throttle {
+  from {
+    pointer-events: none;
+  }
+  to {
+    pointer-events: all;
+  }
+}
+  
+}

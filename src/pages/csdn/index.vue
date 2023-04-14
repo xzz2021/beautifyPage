@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-04-11 14:22:06
  * @LastEditors: xzz
- * @LastEditTime: 2023-04-14 09:14:01
+ * @LastEditTime: 2023-04-14 15:46:56
 -->
 <template></template>
 
@@ -19,32 +19,38 @@ const removeAD = () => {
 }
 
 const allowCopy = () => {
-    $('pre').each(function () {   //  解除复制
+    $('pre').each(function () {   //  解除自由复制
         $(this).attr('style', "user-select: auto;")
         $(this).children('code').attr('style', "user-select: auto;")
-    })
-
-    //   一键复制
-    $('.hljs-button').each(function () {
-        $(this).attr("data-title", "一键复制").attr('onclick', '')
-        // $(this).onclick = (event) => {
-        //     event.stopPropagation && event.stopPropagation()
-        // }
-        let newDom = $(this).clone()
-        $(this).replaceWith(newDom)
-        newDom.on('click', function () {
-            
-            // setTimeout(() => {  $('.passport-login-container span').click() }, 200)   //  部分页面会触发登录弹窗 
-            let allCode = $(this).closest('code')[0].innerText  //  获取到当前块所有代码内容
+        //  实现一键复制
+        $(this).find('.hljs-button').replaceWith('<div class="hljs-button-xzz" >一键复制</div>')
+        let copyBtn = $(this).find('.hljs-button-xzz')
+        copyBtn.on('click', function () {
+            // dom结构判断       //  向上寻找祖先元素                   // 查找同层兄弟元素
+            let existDom = $(this).closest('code').length == 0 ?  $(this).siblings('code') : $(this).closest('code')
+            let allCode = existDom[0].innerText.replace('\n\n一键复制', '')  //  获取到当前块所有代码内容
+            console.log("🚀 ~ file: index.vue:31 ~ allCode:", allCode)
+            // return
             navigator.clipboard.writeText(allCode)   //   复制到剪切板
             ElMessage({ message: '复制成功!!!', type: 'success' })
-            $(this).attr("data-title", "复制成功^_^")
-            setTimeout(() => { $(this).attr("data-title", "一键复制") }, 2000)
+            copyBtn.text("复制成功^_^")
+            setTimeout(() => { copyBtn.text("一键复制") }, 2000)
         })
     })
-
-    // $('.passport-login-container').css('cssText', 'display: none !important;')
-    // $('.passport-login-container').attr('style', 'display: none;')
+    
+    //   一键复制=======原始点击事件拦截方法=========
+    // $('.hljs-button').each(function () {
+    //     $(this).html('<div class="hljs-button-xzz signin" data-title="一键复制"></div>')
+    //     newDom.on('click', function () {
+            
+    //         // setTimeout(() => {  $('.passport-login-container span').click() }, 200)   //  部分页面会触发登录弹窗 
+    //         let allCode = $(this).closest('code')[0].innerText  //  获取到当前块所有代码内容
+    //         navigator.clipboard.writeText(allCode)   //   复制到剪切板
+    //         ElMessage({ message: '复制成功!!!', type: 'success' })
+    //         $(this).attr("data-title", "复制成功^_^")
+    //         setTimeout(() => { $(this).attr("data-title", "一键复制") }, 2000)
+    //     })
+    // })
 }
 
 const unfoldArticle = () => {
@@ -84,8 +90,20 @@ onMounted(() => {
 </script>
 <style  lang='scss' scoped>
 
-//  csdn  登录功能面板 屏蔽  // :global会自动编译到顶层全局css文件里
-:global(.passport-login-container){
-    display: none !important;
+
+:global(.hljs-button-xzz ){
+    // display: none;
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    font-size: 12px;
+    color: #ffffff;
+    background-color: #9999AA;
+    padding: 2px 8px;
+    margin: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.05);
 }
+
 </style>
