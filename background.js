@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-03-27 11:36:17
  * @LastEditors: xzz
- * @LastEditTime: 2023-04-14 10:29:56
+ * @LastEditTime: 2023-04-14 17:36:51
  */
 
 
@@ -9,6 +9,12 @@
 import { bgcApi as API } from './src/api/bgcApi/index'
 
 
+// async function aa() {
+//    await API.rest(5)
+//    console.log("🚀 ~ file: background.js:13 ~ aa ~ aa:")
+   
+// }
+// aa()
 // autoreload   自动刷新
 // import { bgdListenMsg } from 'ws-reload-plugin'
 //    bgdListenMsg()

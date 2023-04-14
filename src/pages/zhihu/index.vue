@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-04-11 14:22:06
  * @LastEditors: xzz
- * @LastEditTime: 2023-04-13 11:17:42
+ * @LastEditTime: 2023-04-14 17:52:07
 -->
 <template>
 
@@ -16,9 +16,7 @@
     const checkExistClick = (dom) => {
          const hasDom = $(dom)
          hasDom.length && hasDom.trigger('click')
-
     }
-
     const checkExistRemove = (dom) => {
          const hasDom = $(dom)
          hasDom.length && hasDom.remove()
@@ -35,9 +33,7 @@ const removeLogins = () => {
 
     isExist('.Question-mainColumn') && $('.Question-mainColumn').css('width', '100%')    // 主题内容宽度重置为100%
  
-    setTimeout(() => checkExistRemove('.css-1hwwfws') , 800)  //顶部登录浮窗  出现比较晚,所以需要延迟移除
-    // setTimeout(checkExistRemove('.css-1hwwfws') , 800)   // 此处是将函数执行后的结果传递给settimeout,,,所以会立即执行
-    // setTimeout(() => $('.css-1hwwfws').remove() , 800)  //顶部登录浮窗  出现比较晚,所以需要延迟移除
+    // setTimeout(() => checkExistRemove('.css-1hwwfws') , 800)  //顶部登录浮窗  出现比较晚,所以需要延迟移除
 }
 
 const scrollRemove = async () => {
@@ -49,17 +45,26 @@ const scrollRemove = async () => {
           }
 }
 
-onMounted(() => {
+onMounted(async() => {
     
     removeLogins()  // 点击以及移除初始弹窗
+    //  此方案 已 废弃   直接类 隐藏  即可
+    // $(window).scroll(scrollRemove)  //监听滚动后右下角出现的登录弹窗
 
-    $(window).scroll(scrollRemove)  //监听滚动后右下角出现的登录弹窗
 })
 
 
 </script>
 <style  lang='scss' scoped>
 
+//  全局暴露有缺陷， 会直接写入生成的content.css文件中，，  从而影响潜在同名的其他平台dom
+:global(.css-1hwwfws){
+    display: none;
+}
+
+:global(.css-1ynzxqw){
+    display: none;
+}
 
 </style>
 

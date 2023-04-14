@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-04-11 14:22:06
  * @LastEditors: xzz
- * @LastEditTime: 2023-04-14 15:46:56
+ * @LastEditTime: 2023-04-14 17:29:04
 -->
 <template></template>
 
@@ -53,11 +53,9 @@ const allowCopy = () => {
     // })
 }
 
-const unfoldArticle = () => {
-    //   Commonsetinterval([".hide-article-box.text-center"]);
-
-    //     hidenode.parentNode.removeChild(hidenode);
-    //     document.getElementById("article_content").style="height: *px; ";
+const unfoldArticle = () => {   //   自动展开  关注博主阅读全文
+    $('#article_content').attr('style', 'height:*px; overflow: auto;')
+    $('.hide-article-box').remove()
 }
 
 const removeRedirect = () => {
@@ -70,20 +68,14 @@ const removeRedirect = () => {
         }
     })
 }
-//     // 复制时保留原文格式，参考 https://greasyfork.org/en/scripts/390502-csdnremovecopyright/code
-//     Object.defineProperty(unsafeWindow, "articleType", {
-//         value: 0,
-//         writable: false,
-//         configurable: false
-//     })
-
-
 
 onMounted(() => {
     removeAD()   //移除广告
     allowCopy()   // 允许复制
     unfoldArticle()   //展开全文
     removeRedirect()   //移除重定向,直接打开外链
+
+
 })
 
 

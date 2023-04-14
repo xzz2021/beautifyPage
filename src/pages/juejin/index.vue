@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-04-11 14:22:06
  * @LastEditors: xzz
- * @LastEditTime: 2023-04-14 11:36:07
+ * @LastEditTime: 2023-04-14 16:50:41
 -->
 <template>
 
@@ -10,9 +10,6 @@
 <script setup>
 
 
-    const isExist = (dom) => {
-        return $(dom).length != 0
-    }
     const checkExistClick = (dom) => {
          const hasDom = $(dom)
          hasDom.length && hasDom.trigger('click')
@@ -24,12 +21,10 @@
          hasDom.length && hasDom.remove()
     }
 
-    
-    //关注弹窗         
-let removeArr = ['.recommend-box' ]
 
+// let removeArr = ['.recommend-box' ]
 const removeLogins = () => {
-    removeArr.map(item => checkExistRemove(item) )
+    // removeArr.map(item => checkExistRemove(item) )
 
 }
 
@@ -48,9 +43,19 @@ const allowCopy = () => {  //   一键复制
     })
 }
 
-onMounted(() => {
+onMounted(async() => {
     // removeLogins()  // 点击以及移除初始弹窗
     allowCopy()
+
+
+    
+
+    function ff(){
+    // window.xzz$ = $
+    return  '999'
+  }
+  let res =  await API.injectFn(ff)
+  console.log("🚀 ~ file: app.vue:206 ~ test1 ~ res:", res)
 
 })
 
@@ -70,9 +75,6 @@ onMounted(() => {
     color: hsla(0,0%,54.9%,.8);
     transition: color .1s;
 }
-
-
-
 :global(.recommend-box){
     display: none;
 }
