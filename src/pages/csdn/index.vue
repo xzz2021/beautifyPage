@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-04-11 14:22:06
  * @LastEditors: xzz
- * @LastEditTime: 2023-04-13 16:15:46
+ * @LastEditTime: 2023-04-14 09:14:01
 -->
 <template></template>
 
@@ -37,7 +37,7 @@ const allowCopy = () => {
             // setTimeout(() => {  $('.passport-login-container span').click() }, 200)   //  部分页面会触发登录弹窗 
             let allCode = $(this).closest('code')[0].innerText  //  获取到当前块所有代码内容
             navigator.clipboard.writeText(allCode)   //   复制到剪切板
-            // ElMessage({ message: '复制成功!!!', type: 'success' })
+            ElMessage({ message: '复制成功!!!', type: 'success' })
             $(this).attr("data-title", "复制成功^_^")
             setTimeout(() => { $(this).attr("data-title", "一键复制") }, 2000)
         })

@@ -1,16 +1,18 @@
 <!--
  * @Date: 2023-03-20 17:54:08
  * @LastEditors: xzz
- * @LastEditTime: 2023-03-27 11:52:19
+ * @LastEditTime: 2023-04-13 16:36:09
 -->
 <template>
   <div class="container">
     <div class="title"> hello world!</div>
   </div>
+  <!-- <setting /> -->
 </template>
 
-<script setup>
 
+<script setup>
+// import setting from './setting.vue'
 </script>
 
 <style lang="scss" scoped>

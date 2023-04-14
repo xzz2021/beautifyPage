@@ -9,6 +9,7 @@ const VueLoaderPlugin = require('vue-loader').VueLoaderPlugin
 const AutoImport = require('unplugin-auto-import/webpack')
 const Components = require('unplugin-vue-components/webpack')
 
+const  { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 
 const comconfig = {
     entry: {
@@ -54,6 +55,7 @@ const comconfig = {
               imports: [
                 'vue',
               ],
+              resolvers: [ElementPlusResolver()]
           }),
         Components({ 
             dirs:['src'],
@@ -63,6 +65,7 @@ const comconfig = {
             // include: [/src/],
             exclude: [/[\/]app.vue[\/]/],
             // exclude: [/[\/]node_modules[\/]/, /[\/].git[\/]/, /[\/].nuxt[\/]/],
+            resolvers: [ElementPlusResolver()]
         }),
         new webpack.ProvidePlugin({  // 在函数上下文环境中注入第三方库---缺点:无法全局window引用---使用expose-loader解决
         $: 'jquery',

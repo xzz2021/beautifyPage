@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-12-06 17:13:35
  * @LastEditors: xzz
- * @LastEditTime: 2023-04-13 08:46:30
+ * @LastEditTime: 2023-04-14 09:01:31
  */
 // 'use strict'默认启用
 import { createApp } from 'vue'
@@ -46,10 +46,40 @@ function createEntry(myapp,id){
     }
 }
 
+//  设定 所有 平台 的 初始  开启状态
+async function getPlatformStatus() {
+  let openPlatformArr = await API.Storage.get('platformArr')
+  //  等于空 说明是第一次使用   则初始化所有平台开启
+  if(openPlatformArr == '') API.Storage.set({platformArr: [ 'zhihu', 'csdn' ]})
+}
 
-// create app instance
-createEntry(zhihu, 'platformzhihu')
-createEntry(csdn, 'platformcsdn')
+getPlatformStatus()
+
+
+async function startGenerate() {
+    // 检查当前网页 区分平台
+    let checkPlatform = location.host.match(/zhihu|csdn/)
+    checkPlatform = checkPlatform ? checkPlatform[0] : ''
+    //  检查当前平台开关是否开启
+    let openPlatformArr = await API.Storage.get('platformArr') || []
+    let checkSwitch = openPlatformArr.includes(checkPlatform)
+    checkPlatform = checkSwitch ? checkPlatform : ''
+    switch(checkPlatform) {
+      case 'zhihu': createEntry(zhihu, 'platformzhihu')
+        break;
+      case 'csdn': createEntry(csdn, 'platformcsdn')
+        break;
+      case '':  ''
+        break;
+      default:  ''
+        break;
+    }
+  }
+
+
+
+  startGenerate()
+
 
 
 
