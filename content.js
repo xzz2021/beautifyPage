@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-12-06 17:13:35
  * @LastEditors: xzz
- * @LastEditTime: 2023-04-15 15:56:51
+ * @LastEditTime: 2023-04-15 16:21:47
  */
 // 'use strict'默认启用
 import { createApp } from 'vue'
@@ -78,9 +78,9 @@ async function startGenerate() {   //  决定是否生成页面进行挂载
     //  检查当前平台开关是否开启
     const openPlatformArr = await API.Storage.get('platformArr') || []
 
-    const checkSwitch = openPlatformArr.find(item => item.name == checkPlatform).status
+    const checkSwitch = openPlatformArr.find(item => item.name == checkPlatform)?.status
 
-    checkSwitch ? createEntry(platformObj[checkPlatform], `platform${checkPlatform}`) : ''
+    checkSwitch ? createEntry(platformObj[checkPlatform], `platform${checkPlatform}`) : console.log(`${checkPlatform}平台未加载,请排查!`)
 
   }
 
