@@ -1,11 +1,11 @@
 <!--
  * @Date: 2023-04-11 14:22:06
  * @LastEditors: xzz
- * @LastEditTime: 2023-04-15 15:09:12
+ * @LastEditTime: 2023-04-15 16:57:46
 -->
 <template>
   <!-- <div class="test">
-        <el-button type="primary" @click="test">testtest</el-button>
+        <el-button type="primary" >testtest</el-button>
     </div> -->
 </template>
 
@@ -55,7 +55,7 @@ const addStyle = () => {
 
 onMounted(async () => {
   // addStyle()  // 动态添加样式
-  // console.log("🚀 ~ file: 71====启动检查===========")
+  console.log("🚀 ~ file: 71====启动检查===========")
 
   beautifyPage()
 
@@ -66,12 +66,12 @@ onMounted(async () => {
 })
 </script>
 <style lang="scss" scoped>
-.test {
-  position: fixed;
-  top: 200px;
-  left: 300px;
-  z-index: 6666;
-}
+// .test {
+//   position: fixed;
+//   top: 200px;
+//   left: 300px;
+//   z-index: 6666;
+// }
 
 //  全局暴露有缺陷， 会直接写入生成的content.css文件中，，  从而影响潜在同名的其他平台dom
 // :global(.css-1hwwfws){

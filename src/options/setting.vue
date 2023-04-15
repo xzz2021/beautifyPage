@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-04-13 16:23:34
  * @LastEditors: xzz
- * @LastEditTime: 2023-04-15 16:16:53
+ * @LastEditTime: 2023-04-15 16:28:26
 -->
 <template>
 <div>功能设置00000</div>
@@ -33,7 +33,7 @@ const onChange = async (val) => {
 }
 
 onMounted(async() => {
-  platformArr.self = await API.Storage.get('platformArr')
+  platformArr.self = await API.Storage.get('platformArr') || []
 })
 
 </script>
