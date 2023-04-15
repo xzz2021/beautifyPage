@@ -7,14 +7,13 @@
 // div:has()
 
 //  通用方法 类名 定义  全局 高优先级
-.show{
-  display: block !important;
-}
+// .show{
+//   display: block !important;
+// }
 
-.hide{
-  display: block !important;
-}
-
+// .hide{
+//   display: none !important;
+// }
 
 
 // 全局  通用布局
@@ -23,12 +22,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-
-
-
-
+}   
 
 //滚动条样式重写
 textarea{

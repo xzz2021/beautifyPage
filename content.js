@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-12-06 17:13:35
  * @LastEditors: xzz
- * @LastEditTime: 2023-04-15 14:48:04
+ * @LastEditTime: 2023-04-15 15:56:51
  */
 // 'use strict'默认启用
 import { createApp } from 'vue'
@@ -52,16 +52,19 @@ function createEntry(myapp,id){
     }
 }
 
+const platformArr = [
+  { platform: '知乎', name: 'zhihu', status: true },
+  { platform: 'csdn', name: 'csdn', status: true },
+  { platform: '掘金', name: 'juejin', status: true },
+  { platform: '简书', name: 'jianshu', status: true },
+]
+// API.Storage.set({platformArr})
 
-// API.Storage.set({platformArr: [ 'zhihu', 'csdn', 'juejin', 'google' ]})
-
-// API.Storage.remove('platformArr')
-// API.Storage.set({platformArr: [ 'zhihu', 'csdn', 'juejin', 'jianshu' ]})
 //  设定 所有 平台 的 初始  开启状态
 async function getPlatformStatus() {
   let openPlatformArr = await API.Storage.get('platformArr')
   //  等于空 说明是第一次使用   则初始化所有平台开启
-  if(openPlatformArr == '') API.Storage.set({platformArr: [ 'zhihu', 'csdn', 'juejin', 'jianshu']})
+  if(openPlatformArr == '') API.Storage.set({platformArr})
 }
 
 getPlatformStatus()
@@ -73,9 +76,9 @@ async function startGenerate() {   //  决定是否生成页面进行挂载
 
     checkPlatform = checkPlatform ? checkPlatform[0] : ''
     //  检查当前平台开关是否开启
-    let openPlatformArr = await API.Storage.get('platformArr') || []
+    const openPlatformArr = await API.Storage.get('platformArr') || []
 
-    let checkSwitch = openPlatformArr.includes(checkPlatform)
+    const checkSwitch = openPlatformArr.find(item => item.name == checkPlatform).status
 
     checkSwitch ? createEntry(platformObj[checkPlatform], `platform${checkPlatform}`) : ''
 
