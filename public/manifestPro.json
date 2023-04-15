@@ -26,6 +26,7 @@
     "resources": ["/js/inject.js","/js/content.js", "/js/content.js.map", "/js/inject.js.map", "/lib/browser-polyfill.js.map"],
     "matches": ["<all_urls>"]
   }],
-  "options_page": "options.html"
+  "options_page": "options.html",
+  "homepage_url": "https://github.com/xzz2021/beautifyPage"
 }
 

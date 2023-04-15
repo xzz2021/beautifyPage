@@ -16,7 +16,8 @@
   "icons": { "16": "logo.png", "48": "logo.png", "128": "logo.png" },
   "content_scripts": [
     {
-      "matches": ["https://www.google.com/*", "https://*.juejin.cn/*", "https://*.zhihu.com/*", "https://*.csdn.net/*"
+      "matches": ["https://www.google.com/*", "https://*.juejin.cn/*", "https://*.zhihu.com/*", "https://*.csdn.net/*",
+      "https://*.jianshu.com/*"
       ],
       "js": ["/js/content.js"]
     }
@@ -25,6 +26,7 @@
     "resources": ["/js/inject.js","/js/content.js", "/js/content.js.map", "/js/inject.js.map", "/lib/browser-polyfill.js.map"],
     "matches": ["<all_urls>"]
   }],
-  "options_page": "options.html"
+  "options_page": "options.html",
+  "homepage_url": "https://github.com/xzz2021/beautifyPage"
 }
 
