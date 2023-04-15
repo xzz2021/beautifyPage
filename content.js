@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-12-06 17:13:35
  * @LastEditors: xzz
- * @LastEditTime: 2023-04-14 10:37:13
+ * @LastEditTime: 2023-04-15 11:08:22
  */
 // 'use strict'默认启用
 import { createApp } from 'vue'
@@ -52,11 +52,15 @@ function createEntry(myapp,id){
     }
 }
 
+
+// API.Storage.set({platformArr: [ 'zhihu', 'csdn', 'juejin', 'google' ]})
+
+
 //  设定 所有 平台 的 初始  开启状态
 async function getPlatformStatus() {
   let openPlatformArr = await API.Storage.get('platformArr')
   //  等于空 说明是第一次使用   则初始化所有平台开启
-  if(openPlatformArr == '') API.Storage.set({platformArr: [ 'zhihu', 'csdn', 'juejin' ]})
+  if(openPlatformArr == '') API.Storage.set({platformArr: [ 'zhihu', 'csdn', 'juejin', 'google' ]})
 }
 
 getPlatformStatus()
@@ -64,7 +68,7 @@ getPlatformStatus()
 
 async function startGenerate() {   //  决定是否生成页面进行挂载
     // 检查当前网页 区分平台
-    let checkPlatform = location.host.match(/zhihu|csdn|juejin/)
+    let checkPlatform = location.host.match(/zhihu|csdn|juejin|google/)
 
     checkPlatform = checkPlatform ? checkPlatform[0] : ''
     //  检查当前平台开关是否开启
@@ -77,8 +81,11 @@ async function startGenerate() {   //  决定是否生成页面进行挂载
   }
 
 
-  startGenerate()
-
 //-----------通过inject渠道------注入js到任意页面----且共享浏览器window--------------
 API.injectFile()
+//  上面注入需要先于vue实例生成,  这样注入就可以在mounted里执行
+
+  startGenerate()
+
+
 

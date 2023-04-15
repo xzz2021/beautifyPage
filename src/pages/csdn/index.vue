@@ -1,21 +1,17 @@
 <!--
  * @Date: 2023-04-11 14:22:06
  * @LastEditors: xzz
- * @LastEditTime: 2023-04-14 17:29:04
+ * @LastEditTime: 2023-04-15 11:00:42
 -->
 <template></template>
 
 <script setup>
 
 
-const checkExistRemove = (dom) => {
-    const hasDom = $(dom)
-    hasDom.length && hasDom.remove()
-}
 
 let removeArr = ['.programmer1Box', '#recommendAdBox', '.box-shadow.mb8', '#footerRightAds']
 const removeAD = () => {
-    removeArr.map(item => checkExistRemove(item))
+    removeArr.map(item => API.checkExistHide(item))
 }
 
 const allowCopy = () => {

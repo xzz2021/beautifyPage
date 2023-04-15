@@ -6,7 +6,8 @@
 import zhihu from './zhihu/index.vue'
 import csdn from './csdn/index.vue'
 import juejin from './juejin/index.vue'
+import google from './entery/app.vue'
 
-const platformObj = { zhihu, csdn, juejin }
+const platformObj = { zhihu, csdn, juejin, google }
 
 export default platformObj

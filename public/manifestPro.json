@@ -1,7 +1,7 @@
 {
   "name": "xzz-网站优化",
   "description": "用于屏蔽pc常用网站的登录限制,广告,各种弹窗,解除复制限制,让自己聚焦于信息主体!",
-  "version": "1.0.2",
+  "version": "1.0.1",
   "manifest_version": 3,
   "background": { 
     "service_worker": "background.js" 
@@ -16,9 +16,10 @@
   "icons": { "16": "logo.png", "48": "logo.png", "128": "logo.png" },
   "content_scripts": [
     {
-      "matches": ["https://www.google.com/*", "https://*.juejin.cn/*", "https://*.zhihu.com/*", "https://*.csdn.net/*"
+      "matches": ["https://*.juejin.cn/*", "https://*.zhihu.com/*", "https://*.csdn.net/*"
       ],
-      "js": ["/js/content.js"]
+      "js": ["/js/content.js"],
+      "css": ["/css/content.css" ]
     }
   ],
   "web_accessible_resources": [{

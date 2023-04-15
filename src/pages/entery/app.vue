@@ -1,14 +1,14 @@
 <!--
  * @Date: 2022-12-06 17:13:35
  * @LastEditors: xzz
- * @LastEditTime: 2023-04-11 14:05:28
+ * @LastEditTime: 2023-04-15 10:42:38
 -->
 <template>
 <div class="test">
   
   <div>
 
-   900000000000000
+   hello world!!!
   </div> 
 
   <!-- components目录下的子组件  直接使用文件名称 -->
@@ -26,15 +26,21 @@
 
 
 //注入函数到inject里,共享浏览器调试面板的顶层window
-
 const test = async() => {
   function ff(){
-    window.xzz$ = $
-    return  window.pageConfig.product.imageList
+    return  '98770'
   }
   let res =  await API.injectFn(ff)
   console.log("🚀 ~ file: app.vue:206 ~ test1 ~ res:", res)
 }
+
+onMounted(() => {
+  console.log("🚀 ~ file:=========google=================")
+  
+  setTimeout(() => {
+    test()
+  }, 1000)
+})
 
 
 </script>

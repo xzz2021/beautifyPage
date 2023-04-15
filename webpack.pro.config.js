@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-03-27 11:36:17
  * @LastEditors: xzz
- * @LastEditTime: 2023-04-13 16:16:49
+ * @LastEditTime: 2023-04-15 10:24:20
  */
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
 
@@ -46,7 +46,7 @@ const proconfig = {
         new CopyWebpackPlugin({  //实现静态文件的直接复制
             patterns: [             // 需要拷贝的目录或者路径
             {from: 'public/logo.png', to: './logo.png'},
-            {from: 'public/manifest.json', to: './manifest.json'}
+            {from: 'public/manifestPro.json', to: './manifest.json'}
         ]}),
 
         new MiniCssExtractPlugin({

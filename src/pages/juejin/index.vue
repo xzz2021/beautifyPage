@@ -10,23 +10,11 @@
 <script setup>
 
 
-    const checkExistClick = (dom) => {
-         const hasDom = $(dom)
-         hasDom.length && hasDom.trigger('click')
+// // let removeArr = ['.recommend-box' ]
+// const removeLogins = () => {
+//     // removeArr.map(item => checkExistHide(item) )
 
-    }
-
-    const checkExistRemove = (dom) => {
-         const hasDom = $(dom)
-         hasDom.length && hasDom.remove()
-    }
-
-
-// let removeArr = ['.recommend-box' ]
-const removeLogins = () => {
-    // removeArr.map(item => checkExistRemove(item) )
-
-}
+// }
 
 const allowCopy = () => {  //   一键复制
     $('pre').each(function () {

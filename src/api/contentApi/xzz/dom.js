@@ -1,12 +1,24 @@
 /*
  * @Date: 2022-11-03 08:24:20
- * @LastEditors: xzz2021
- * @LastEditTime: 2022-12-10 10:25:02
+ * @LastEditors: xzz
+ * @LastEditTime: 2023-04-15 11:13:26
  */
 
 // 本页定义->>DOM操作<<-相关封装方法
 
 
+const isExist = (dom) => {
+    return $(dom).length != 0
+}
+const checkExistClick = (dom) => {
+     const hasDom = $(dom)
+     hasDom.length != 0 && hasDom.trigger('click')
+}
+const checkExistHide = (dom) => {
+     const hasDom = $(dom)
+    //  hasDom.length != 0 && hasDom.remove()  //  使用隐藏可以避免宿主站点自身js执行的异常报错
+     hasDom.length != 0 && hasDom.attr('style', 'display: none;')
+}
 
 
 //获取选中文本
@@ -126,7 +138,7 @@ parent.removeChild(ele) */
 
 
 
-export default {scroll}
+export default {isExist, checkExistClick, checkExistHide}
 
 
 

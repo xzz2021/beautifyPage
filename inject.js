@@ -5,6 +5,7 @@
  */
 
 
+//  eval 函数的是否允许执行  取决于  站点的 限制
 
 window.addEventListener('xzz', (params)=> {
     // console.log("🚀 ~ file: inject.js:26 ~ window.addEventListener ~ params:", params)
