@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-04-11 14:22:06
  * @LastEditors: xzz
- * @LastEditTime: 2023-04-14 16:50:41
+ * @LastEditTime: 2023-04-15 10:01:55
 -->
 <template>
 
@@ -46,16 +46,6 @@ const allowCopy = () => {  //   一键复制
 onMounted(async() => {
     // removeLogins()  // 点击以及移除初始弹窗
     allowCopy()
-
-
-    
-
-    function ff(){
-    // window.xzz$ = $
-    return  '999'
-  }
-  let res =  await API.injectFn(ff)
-  console.log("🚀 ~ file: app.vue:206 ~ test1 ~ res:", res)
 
 })
 

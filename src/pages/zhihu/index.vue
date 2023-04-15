@@ -1,7 +1,7 @@
 <!--
  * @Date: 2023-04-11 14:22:06
  * @LastEditors: xzz
- * @LastEditTime: 2023-04-14 17:52:07
+ * @LastEditTime: 2023-04-15 09:29:59
 -->
 <template>
 
@@ -30,9 +30,10 @@ const removeLogins = () => {
     setTimeout(() => checkExistClick('.Modal-closeButton'), 100) // 登录弹窗 带蒙层  所以借由点击关闭
 
     removeArr.map(item => checkExistRemove(item) )
-
+    // 宽度由父元素Question-main 决定
     isExist('.Question-mainColumn') && $('.Question-mainColumn').css('width', '100%')    // 主题内容宽度重置为100%
- 
+    isExist('.ContentItem-actions') && $('.ContentItem-actions').css('width', '1000px')    // 底栏和主题内容同宽
+    
     // setTimeout(() => checkExistRemove('.css-1hwwfws') , 800)  //顶部登录浮窗  出现比较晚,所以需要延迟移除
 }
 
@@ -45,11 +46,24 @@ const scrollRemove = async () => {
           }
 }
 
+const removeRedirect = () => {
+    $('a').each(function(index, item){
+        let rawUrl = $(item).attr('href')
+        if(rawUrl.includes('link.zhihu')){
+            let newUrl = rawUrl.replace('//link.zhihu.com/?target=http%3A', '')
+            $(this).attr('href', newUrl)
+        }
+        
+    })
+}
+
 onMounted(async() => {
     
     removeLogins()  // 点击以及移除初始弹窗
     //  此方案 已 废弃   直接类 隐藏  即可
     // $(window).scroll(scrollRemove)  //监听滚动后右下角出现的登录弹窗
+
+    removeRedirect()  //  屏蔽知乎重定向,直连第三方站点
 
 })
 
