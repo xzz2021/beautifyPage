@@ -65,12 +65,29 @@ const removeRedirect = () => {
     })
 }
 
+const addStyle = () => {   //  动态注入style标签
+    const style = `.hljs-button-xzz{
+                    position: absolute;
+                    right: 4px;
+                    top: 4px;
+                    font-size: 12px;
+                    color: #ffffff;
+                    background-color: #9999AA;
+                    padding: 2px 8px;
+                    margin: 8px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.05);
+                }`
+    API.appendStyle(style)  
+}
+
 onMounted(() => {
+    addStyle() // 动态添加样式
     removeAD()   //移除广告
     allowCopy()   // 允许复制
     unfoldArticle()   //展开全文
     removeRedirect()   //移除重定向,直接打开外链
-
 
 })
 
@@ -79,19 +96,19 @@ onMounted(() => {
 <style  lang='scss' scoped>
 
 
-:global(.hljs-button-xzz ){
-    // display: none;
-    position: absolute;
-    right: 4px;
-    top: 4px;
-    font-size: 12px;
-    color: #ffffff;
-    background-color: #9999AA;
-    padding: 2px 8px;
-    margin: 8px;
-    border-radius: 4px;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.05);
-}
+// :global(.hljs-button-xzz ){
+//     // display: none;
+//     position: absolute;
+//     right: 4px;
+//     top: 4px;
+//     font-size: 12px;
+//     color: #ffffff;
+//     background-color: #9999AA;
+//     padding: 2px 8px;
+//     margin: 8px;
+//     border-radius: 4px;
+//     cursor: pointer;
+//     box-shadow: 0 2px 4px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.05);
+// }
 
 </style>

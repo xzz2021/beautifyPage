@@ -31,9 +31,29 @@ const allowCopy = () => {  //   一键复制
     })
 }
 
+const addStyle = () => {
+    let style = `.copy-code-btn-xzz{
+                    position: absolute;
+                    top: 6px;
+                    right: 15px;
+                    font-size: 12px;
+                    line-height: 1;
+                    cursor: pointer;
+                    color: hsla(0,0%,54.9%,.8);
+                    transition: color .1s;
+                 }
+                 .recommend-box{
+                     display: none;
+                 }`
+    API.appendStyle(style)         
+
+}
+
 onMounted(async() => {
+    addStyle() // 动态添加样式
     // removeLogins()  // 点击以及移除初始弹窗
     allowCopy()
+
 
 })
 
@@ -43,19 +63,19 @@ onMounted(async() => {
 
 
 //   复制代码按钮 替换类名
-:global(.copy-code-btn-xzz) {
-    position: absolute;
-    top: 6px;
-    right: 15px;
-    font-size: 12px;
-    line-height: 1;
-    cursor: pointer;
-    color: hsla(0,0%,54.9%,.8);
-    transition: color .1s;
-}
-:global(.recommend-box){
-    display: none;
-}
+// :global(.copy-code-btn-xzz) {
+//     position: absolute;
+//     top: 6px;
+//     right: 15px;
+//     font-size: 12px;
+//     line-height: 1;
+//     cursor: pointer;
+//     color: hsla(0,0%,54.9%,.8);
+//     transition: color .1s;
+// }
+// :global(.recommend-box){
+//     display: none;
+// }
 </style>
 
 

@@ -1,7 +1,7 @@
 /*
  * @Date: 2022-12-06 17:13:35
  * @LastEditors: xzz
- * @LastEditTime: 2023-04-15 11:08:22
+ * @LastEditTime: 2023-04-15 11:25:26
  */
 // 'use strict'默认启用
 import { createApp } from 'vue'
@@ -55,12 +55,13 @@ function createEntry(myapp,id){
 
 // API.Storage.set({platformArr: [ 'zhihu', 'csdn', 'juejin', 'google' ]})
 
-
+// API.Storage.remove('platformArr')
+// API.Storage.set({platformArr: [ 'zhihu', 'csdn', 'juejin' ]})
 //  设定 所有 平台 的 初始  开启状态
 async function getPlatformStatus() {
   let openPlatformArr = await API.Storage.get('platformArr')
   //  等于空 说明是第一次使用   则初始化所有平台开启
-  if(openPlatformArr == '') API.Storage.set({platformArr: [ 'zhihu', 'csdn', 'juejin', 'google' ]})
+  if(openPlatformArr == '') API.Storage.set({platformArr: [ 'zhihu', 'csdn', 'juejin']})
 }
 
 getPlatformStatus()

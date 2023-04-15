@@ -20,6 +20,14 @@ const checkExistHide = (dom) => {
      hasDom.length != 0 && hasDom.attr('style', 'display: none;')
 }
 
+// 动态注入style标签及样式内容到head
+const appendStyle = (cssContent) => { 
+    const  style = document.createElement("style")
+    style.textContent = cssContent
+    const head = document.querySelector("head")
+    head.appendChild(style)
+}
+
 
 //获取选中文本
 const getSelectedText = () => window.getSelection().toString();
@@ -117,28 +125,7 @@ parent.removeChild(ele) */
 //     }
 // })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-export default {isExist, checkExistClick, checkExistHide}
+export default {isExist, checkExistClick, checkExistHide, appendStyle}
 
 
 
