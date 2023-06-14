@@ -9,6 +9,9 @@ import juejin from './juejin/index.vue'
 import google from './entery/app.vue'
 import jianshu from './jianshu/index.vue'
 
-const platformObj = { zhihu, csdn, juejin, google, jianshu }
+
+import translate from './translate/index.vue'
+
+const platformObj = { zhihu, csdn, juejin, google, jianshu, translate }
 
 export default platformObj

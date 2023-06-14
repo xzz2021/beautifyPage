@@ -75,7 +75,12 @@ async function startGenerate() {   //  决定是否生成页面进行挂载
 API.injectFile()
 //  上面注入需要先于vue实例生成,  这样注入就可以在mounted里执行
 
+
+// 所有页面创建悬浮翻译
+createEntry(platformObj['translate'], 'translate-xzz' )
+
   startGenerate()
+
 
 
 
