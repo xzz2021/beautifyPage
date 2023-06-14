@@ -40,3 +40,16 @@ const platformArr = [
       const { bgdListenMsg } = require('ws-reload-plugin')
        bgdListenMsg()
    }
+
+
+   chrome.runtime.onMessage.addListener(
+    (message, sender, sendResponse) => {
+      if(message.type === 'myfetch') {
+      (async () => {
+        let res =  await API.myfetch(message.config.url, message.config)
+        sendResponse(res)})()
+
+         return true
+    }
+  }
+    )
