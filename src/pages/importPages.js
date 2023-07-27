@@ -8,7 +8,8 @@ import csdn from './csdn/index.vue'
 import juejin from './juejin/index.vue'
 import google from './entery/app.vue'
 import jianshu from './jianshu/index.vue'
+import bilibili from './bilibili/index.vue'
 
-const platformObj = { zhihu, csdn, juejin, google, jianshu }
+const platformObj = { zhihu, csdn, juejin, google, jianshu, bilibili }
 
 export default platformObj

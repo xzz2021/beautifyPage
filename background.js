@@ -24,6 +24,7 @@ const platformArr = [
    { platform: 'csdn', name: 'csdn', status: true },
    { platform: '掘金', name: 'juejin', status: true },
    { platform: '简书', name: 'jianshu', status: true },
+   { platform: 'B站', name: 'bilibili', status: true },
  ]
  // API.Storage.set({platformArr})
  
@@ -32,6 +33,8 @@ const platformArr = [
    let openPlatformArr = await API.Storage.get('platformArr')
    //  等于空 说明是第一次使用   则初始化所有平台开启
    if(openPlatformArr == '') API.Storage.set({platformArr})
+   // 当平台有更新，需比较平台数量与历史版本是否一致
+   if(openPlatformArr.length !== platformArr.length) API.Storage.set({platformArr})
  }
 
  getPlatformStatus()
@@ -48,7 +51,6 @@ const platformArr = [
       (async () => {
         let res =  await API.myfetch(message.config.url, message.config)
         sendResponse(res)})()
-
          return true
     }
   }

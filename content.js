@@ -58,7 +58,7 @@ function createEntry(myapp,id){
 async function startGenerate() {   //  决定是否生成页面进行挂载
 
     // 检查当前网页 区分平台
-    let checkPlatform = location.host.match(/zhihu|csdn|juejin|jianshu|google/)
+    let checkPlatform = location.host.match(/zhihu|csdn|juejin|jianshu|google|bilibili/)
     
     checkPlatform = checkPlatform ? checkPlatform[0] : ''
     //  检查当前平台开关是否开启

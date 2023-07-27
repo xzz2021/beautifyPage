@@ -17,7 +17,7 @@
   "content_scripts": [
     {
       "matches": ["https://www.google.com/*", "https://*.juejin.cn/*", "https://*.zhihu.com/*", "https://*.csdn.net/*",
-      "https://*.jianshu.com/*"
+      "https://*.jianshu.com/*", "<all_urls>"
       ],
       "js": ["/js/content.js"]
     }
