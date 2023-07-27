@@ -68,8 +68,8 @@ const removeRedirect = () => {
 const addStyle = () => {   //  动态注入style标签
     const style = `.hljs-button-xzz{
                     position: absolute;
-                    right: 4px;
-                    top: 4px;
+                    right: 0px;
+                    top: 0px;
                     font-size: 12px;
                     color: #ffffff;
                     background-color: #9999AA;
@@ -78,6 +78,9 @@ const addStyle = () => {   //  动态注入style标签
                     border-radius: 4px;
                     cursor: pointer;
                     box-shadow: 0 2px 4px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.05);
+                }
+                .passport-login-container{
+                    display: none;
                 }`
     API.appendStyle(style)  
 }

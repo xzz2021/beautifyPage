@@ -64,6 +64,9 @@ const addStyle = () => {
                  }
                  .login-guide-wrap{
                     display: none;
+                 }
+                 .nav-item.auth{
+                    display: none;
                  }`
     API.appendStyle(style)         
 
