@@ -85,13 +85,37 @@ const addStyle = () => {   //  动态注入style标签
     API.appendStyle(style)  
 }
 
+const permitCopy = () => {  
+ 
+    //优化登陆后复制
+    // $('code').css({'user-select':'unset'})
+    // $('#content_views pre').css({'user-select':'unset'})
+ 
+ 
+    // //移除“登陆后复制”按钮
+    //  $('.hljs-button').remove();
+    // //移除readmore按钮，并显示全文
+    // $('.hide-article-box').remove();
+    // $('.article_content').css({'height':'initial'})
+ 
+ 
+    //去除复制后的copyright小尾巴
+ 
+    document.querySelectorAll('*').forEach(item=>{
+    item.oncopy = function(e) {
+        e.stopPropagation(); 
+    }
+})
+
+
+}
 onMounted(() => {
     addStyle() // 动态添加样式
     removeAD()   //移除广告
     allowCopy()   // 允许复制
     unfoldArticle()   //展开全文
     removeRedirect()   //移除重定向,直接打开外链
-
+    permitCopy()  //允许内容文本复制
 })
 
 
