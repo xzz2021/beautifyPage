@@ -4,24 +4,28 @@
  * @LastEditTime: 2023-04-15 16:28:26
 -->
 <template>
-<div>功能设置00000</div>
+<h2>功能设置</h2>
 
 <div class="demo-collapse">
     <el-collapse v-model="activeName" accordion>
-      <el-collapse-item title="平台开关: 当你已有相应平台账号或会员时,可以选择关闭,避免冲突!" name="1">
-        <div v-for="(item, index) in platformArr.self" :key="index">
+      <el-collapse-item title="各平台开关:" name="1">
+        <div class="switchArea" v-for="(item, index) in platformArr.self" :key="index">
             <el-switch @change="onChange" v-model="item.status"  :active-text="item.platform"  />
         </div>
+        <!-- <div> 
+          <el-switch style="--el-switch-on-color: #07fb74; --el-switch-off-color: red" @change="onChangeWhole" v-model="mainSwitch"  active-text="总开关"  />
+        </div> -->
       </el-collapse-item>
       <el-collapse-item title="其他配置" name="2">
-        <div>test
-        </div>
+        <div>test</div>
       </el-collapse-item>
     </el-collapse>
   </div>
 </template>
 
 <script setup>
+
+// let mainSwitch = ref(true)
 
 const activeName = ref('1')
 let  platformArr = reactive({self: []})
@@ -39,5 +43,8 @@ onMounted(async() => {
 </script>
 <style  lang='scss' scoped>
 
+.switchArea{
+  // max-width: 600px;
+}
 
 </style>
