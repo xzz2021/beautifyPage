@@ -21,11 +21,20 @@ import platformObj from './src/pages/importPages'
 
 
 
-//   开发模式时  的  自动刷新
+  // 开发模式时  的  自动刷新
 if(DEBUG){   // 开发模式时为真   //   生产模式为假
   const { createWsConnect } = require('ws-reload-plugin')
   createWsConnect({})
 }
+
+//   不可使用，chrome有安全限制，估计不允许运行时注入js
+// if(DEBUG){ 
+//   console.log("🚀 ~ file: content.js:34 ~ import===========================")
+//   import('ws-reload-plugin').then(({createWsConnect}) => {
+//     console.log("🚀 ~ file: content.js:34 ~ import ~ aa:", createWsConnect)
+//   }
+// )
+// }
 
 
 //----------------------
