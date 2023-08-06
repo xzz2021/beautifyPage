@@ -80,7 +80,10 @@ const addStyle = () => {   //  动态注入style标签
                     cursor: pointer;
                     box-shadow: 0 2px 4px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.05);
                 }
-                .passport-login-container, .tool-active-list{
+                .more-toolbox-new .tool-active .tool-active-list{
+                    display: none !important;
+                }
+                .passport-login-container{
                     display: none;
                 }`
     API.appendStyle(style)  

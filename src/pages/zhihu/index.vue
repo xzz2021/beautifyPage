@@ -20,7 +20,7 @@
 let removeArr = ['.css-1ynzxqw33', '.AppHeader-profile', '.Question-sideColumn', '.ColumnPageHeader-profile' ]
 
 const removeLogins = () => {
-    setTimeout(() => API.checkExistClick('.Modal-closeButton'), 100) // 登录弹窗 带蒙层  所以借由点击关闭
+    setTimeout(() => API.checkExistClick('.Modal-closeButton'), 50) // 登录弹窗 带蒙层  所以借由点击关闭
 
     removeArr.map(item => API.checkExistHide(item) )
     // 宽度由问题页父元素Question-main 决定
