@@ -10,7 +10,8 @@
 
 
 let removeArr = ['.programmer1Box', '#recommendAdBox', '.box-shadow.mb8', '#footerRightAds', '#asideNewNps',
-                    '#asideNewComments', '#recommendNps',  '.recommend-ask-box.has-bg']
+                    '#asideNewComments', '#recommendNps',  '.recommend-ask-box.has-bg', '.passport-container-mini-tip',
+                '.csdn-toolbar-creative-mp', '.write-guide-buttom-box']
 const removeAD = () => {
     removeArr.map(item => API.checkExistHide(item))
 }
@@ -120,6 +121,9 @@ onMounted(() => {
     unfoldArticle()   //展开全文
     removeRedirect()   //移除重定向,直接打开外链
     permitCopy()  //允许内容文本复制
+    //  特殊项点击关闭
+    
+    API.checkExistClick('.passport-auto-tip-login-container')
 })
 
 
