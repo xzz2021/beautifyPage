@@ -19,10 +19,11 @@
 
     
     //关注弹窗          //  顶部登录按钮               // 侧栏广告       专栏文章页登录 'ColumnPageHeader-profile'
-let removeArr = ['.css-1ynzxqw33', '.AppHeader-profile', '.Question-sideColumn', '.ColumnPageHeader-profile' ]
+let removeArr = ['.css-1ynzxqw33', '.AppHeader-profile', '.Question-sideColumn', '.ColumnPageHeader-profile',
+                 ]
 
 const removeLogins = () => {
-    setTimeout(() => API.checkExistClick('.Modal-closeButton'), 50) // 登录弹窗 带蒙层  所以借由点击关闭
+    setTimeout(() => API.checkExistClick('.Modal-closeButton'), 5) // 登录弹窗 带蒙层  所以借由点击关闭
 
     removeArr.map(item => API.checkExistHide(item) )
     // 宽度由问题页父元素Question-main 决定
@@ -64,7 +65,7 @@ const test = async() => {
 }
 
 const addStyle = () => {   //  动态注入style标签
-    
+
     const style = ".css-1hwwfws, .css-1ynzxqw, .css-woosw9, .css-i9srcr{ display: none; }"
     API.appendStyle(style)  
 }
