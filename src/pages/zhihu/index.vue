@@ -4,7 +4,9 @@
  * @LastEditTime: 2023-04-15 11:59:48
 -->
 <template>
-
+<!-- <div>
+    tsesjgf
+</div> -->
 <!-- <div class="test">
     <el-button type="primary" @click="test">testtest</el-button>
 </div> -->
@@ -62,7 +64,8 @@ const test = async() => {
 }
 
 const addStyle = () => {   //  动态注入style标签
-    const style = ".css-1hwwfws, .css-1ynzxqw{ display: none; }"
+    
+    const style = ".css-1hwwfws, .css-1ynzxqw, .css-woosw9, .css-i9srcr{ display: none; }"
     API.appendStyle(style)  
 }
 
