@@ -1,13 +1,12 @@
 {
   "name": "xzz-网站优化",
   "description": "用于屏蔽pc常用网站的登录限制,广告,各种弹窗,解除复制限制,让自己聚焦于信息主体!",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "manifest_version": 3,
   "background": { 
     "service_worker": "background.js" 
   },
   "permissions": ["storage", "activeTab", "tabs", "contextMenus", "scripting", "downloads", "cookies"],
-  "host_permissions": ["*://*.跨域请求网站api时需要在此处定义.com/*"],
   "action": {
     "default_title": "popup.html",
     "default_icon": "logo.png",
@@ -23,7 +22,7 @@
     }
   ],
   "web_accessible_resources": [{
-    "resources": ["/js/inject.js","/js/content.js", "/js/content.js.map", "/js/inject.js.map", "/lib/browser-polyfill.js.map"],
+    "resources": ["/js/inject.js","/js/content.js"],
     "matches": ["<all_urls>"]
   }],
   "options_page": "options.html",
