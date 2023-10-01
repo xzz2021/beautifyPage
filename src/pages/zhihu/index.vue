@@ -48,7 +48,7 @@ const removeRedirect = () => {
         let rawUrl = $(this).attr('href')
         if(rawUrl?.includes('link.zhihu')){
             let newUrl = rawUrl.replace('//link.zhihu.com/?target=http%3A', '').replace('//link.zhihu.com/?target=https%3A', '')
-            console.log("🚀 ~ file================ newUrl:",newUrl)
+            // console.log("🚀 ~ file================ newUrl:",newUrl)
             $(this).attr('href', newUrl)
         }
     })
