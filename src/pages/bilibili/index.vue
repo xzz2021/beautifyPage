@@ -11,46 +11,98 @@
 </template>
 
 <script setup>
+import { onBeforeMount } from 'vue';
 
-const autoHD = async () => {
 
-    // var len = localStorage.length;  // 获取长度
-    // console.log(len) // 输出5
-    // var arr = new Array(); // 定义数据集
-    // for(var i = 0; i < len; i++) {
-    //     // 获取key 索引从0开始
-    //     var getKey = localStorage.key(i);
-    //     // 获取key对应的值
-    //     var getVal = localStorage.getItem(getKey);
-    //     // 放进数组
-    //     arr[i] = {
-    //         'key': getKey,
-    //         'val': getVal,
-    //     }
-    // }
-    // console.log(arr);
-
-        //只实现了点击
-        await API.wait(1)  // 需要等待节点加载后获取
-        const ll = $(".bpx-player-ctrl-quality-menu li:first-child")
-        ll.click();
-    // };
-    return
-    let  a = JSON.parse(localStorage.getItem("rateRecordTime_h5p_room"))
-    console.log("🚀 ~ file: index.vue:17 ~ autoHD ~ a:", a)
-    a.v = "v"
-    localStorage.setItem("rateRecordTime_h5p_room", JSON.stringify(a))
+// let removeArr = ['.right-entry .right-entry-item', ]
+const removeDiv = async () => {
+    // removeArr.map(item => API.checkExistHide(item))
+    const checkRmDiv = setInterval(() => {
+        let rmItems = $('.right-entry .right-entry-item')
+        if(rmItems.length <  2) return
+        $(rmItems[0]).attr('style', 'display: none;')
+        $(rmItems[1]).attr('style', 'display: none;')
+        clearInterval(checkRmDiv)        
+    }, 1000);
 }
 
 const addStyle = () => {   //  动态注入style标签
-    const style = ".login-tip { display: none; }"
+    const style = `.login-tip,{ display: none; }
+    .bili-mini-mask,{
+        display: none !important;
+    }`
     API.appendStyle(style)  
 }
 
+const addMask = () => { 
+    // $('body').
+    const div=document.createElement('div');
+    div.setAttribute('class', 'bili-mini-mask')
+    document.body.appendChild(div);
+
+}
+
+const clickToPlay = async() => {
+    let isVideoPage =  location.href.includes('video')
+    if(!isVideoPage) return
+    await API.wait(55)
+    const check = setInterval(() => {
+        let pl = $('.bili-paused').length
+        console.log("🚀 ~ 每秒钟检查一次视频是否暂停")
+        if(pl > 0){
+            console.log("🚀 ~ 检查结束=============")
+            clearInterval(check)
+            $('.bpx-player-ctrl-btn.bpx-player-ctrl-play').click()
+        }
+    }, 1000);
+}
+
+const autoHD = async() => {
+
+
+    const re = /https:\/\/www\.bilibili\.com\/video\/.*/;
+  const oldHref = window.location.href;
+  const timer4Url = setInterval(() => {
+    const newHref = window.location.href;
+    if (newHref === oldHref) return;
+    if (re.test(newHref) || re.test(oldHref)) {
+      clearInterval(timer4Url);
+      window.location.reload();
+    }
+  }, 200);
+
+  const originSetTimeout = window.setTimeout;
+  window.setTimeout = function(func, delay) {
+    if (delay === 3e4) delay = 3e8;
+    return originSetTimeout.call(this, func, delay);
+  }
+
+  // click the trial button automatically
+  const timer4Btn = setInterval(async () => {
+    const trialBtn = document.querySelector('.bpx-player-toast-confirm-login');
+    if (trialBtn) {
+      trialBtn.click()
+      clearInterval(timer4Btn);
+    }
+  }, 200);
+}
+
+
+
+
+onBeforeMount(() => {
+})
+
 onMounted(async () => {
     addStyle()  // 动态添加样式
-    // await autoHD()
-    console.log("=====================");
+    autoHD()
+    removeDiv()
+    addMask()
+    clickToPlay()
+    // removeAutoLogin()
+    console.log("🚀 ~ file: index.vue:68 ~ onMounted ~ removeAutoLogin:")
+
+    
 })
 
 

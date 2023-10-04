@@ -15,7 +15,8 @@
   "icons": { "16": "logo.png", "48": "logo.png", "128": "logo.png" },
   "content_scripts": [
     {
-      "matches": ["https://*.juejin.cn/*", "https://*.zhihu.com/*", "https://*.csdn.net/*","https://*.jianshu.com/*"
+      "matches": ["https://*.juejin.cn/*", "https://*.zhihu.com/*", "https://*.csdn.net/*","https://*.jianshu.com/*",
+      "https://*.bilibili.com/*"
       ],
       "js": ["/js/content.js"],
       "css": ["/css/content.css" ]

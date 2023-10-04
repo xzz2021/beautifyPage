@@ -10,7 +10,7 @@
 
 
 let removeArr = ['.programmer1Box', '#recommendAdBox', '.box-shadow.mb8', '#footerRightAds', '#asideNewNps',
-                    '#asideNewComments', '#recommendNps',  '.recommend-ask-box.has-bg', '.passport-container-mini-tip',
+                    '#asideNewComments', '#recommendNps',  '.recommend-ask-box.has-bg',
                 '.csdn-toolbar-creative-mp', '.write-guide-buttom-box']
 const removeAD = () => {
     removeArr.map(item => API.checkExistHide(item))
@@ -81,10 +81,10 @@ const addStyle = () => {   //  动态注入style标签
                     cursor: pointer;
                     box-shadow: 0 2px 4px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.05);
                 }
-                .more-toolbox-new .tool-active .tool-active-list{
+                .more-toolbox-new .tool-active .tool-active-list, .passport-container-mini-tip,.tool-active-list{
                     display: none !important;
                 }
-                .passport-login-container{
+                .passport-login-container, .sidetool-writeguide-box{
                     display: none;
                 }`
     API.appendStyle(style)  

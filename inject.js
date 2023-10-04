@@ -24,3 +24,33 @@ window.addEventListener('xzz', (params)=> {
     console.error("🚀 ~ file: inject.js:22 ~ window.addEventListener ~ error:", error)
     }
 },false)
+
+
+const coverSetItem = () => {
+    const originSetItem = window.localStorage.setItem;
+  window.localStorage.setItem = function(key, value) {
+    // console.log("🚀 ~ file: inject.js:32 ~ coverSetItem ~ key:", key)
+    if (key === "bpx_player_profile") {
+      const profile = JSON.parse(value);
+      profile.lastView = 0
+    //   profile.lastView = Date.now() - 864e5 
+      profile.media.quality = '80';
+    //   profile.media.autoplay = false;
+      value = JSON.stringify(profile);
+    }
+    if(key === "bp_nc_sr"){
+      const bp = JSON.parse(value);
+    //   let curPro = window.localStorage.getItem("bpx_player_profile")
+    //   let toObj = JSON.parse(curPro)
+    //   let timestamp = toObj.lastView
+    if(!bp) return
+      bp['117145140'].timestamp = 0
+      value = JSON.stringify(bp);
+    }
+    originSetItem.call(this,key,value)
+  }
+}
+
+coverSetItem()
+
+var e = ''
