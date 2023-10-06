@@ -26,8 +26,19 @@ window.addEventListener('xzz', (params)=> {
 },false)
 
 
-const coverSetItem = () => {
-    const originSetItem = window.localStorage.setItem;
+
+const injectForBilibili = () => {
+
+
+//  b站覆写setTimeout
+const originSetTimeout = window.setTimeout;
+  window.setTimeout = function(func, delay) {
+    if (delay === 4e3) delay = 4e8;
+    if (delay === 3e4) delay = 10e10;
+    return originSetTimeout.call(this, func, delay);
+    }
+
+  const originSetItem = window.localStorage.setItem;
   window.localStorage.setItem = function(key, value) {
     // console.log("🚀 ~ file: inject.js:32 ~ coverSetItem ~ key:", key)
     if (key === "bpx_player_profile") {
@@ -51,6 +62,11 @@ const coverSetItem = () => {
   }
 }
 
-coverSetItem()
+if(location.href.includes('bilibili')) {
+  injectForBilibili()
+}
 
-var e = ''
+
+
+
+

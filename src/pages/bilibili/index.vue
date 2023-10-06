@@ -28,8 +28,9 @@ const removeDiv = async () => {
 
 const addStyle = () => {   //  动态注入style标签
     const style = `.login-tip,{ display: none; }
-    .bili-mini-mask,{
+    body .bili-mini-mask,{
         display: none !important;
+        z-index: -2 !important;
     }`
     API.appendStyle(style)  
 }
@@ -71,11 +72,14 @@ const autoHD = async() => {
     }
   }, 200);
 
-  const originSetTimeout = window.setTimeout;
-  window.setTimeout = function(func, delay) {
-    if (delay === 3e4) delay = 3e8;
-    return originSetTimeout.call(this, func, delay);
-  }
+  // const originSetTimeout = window.setTimeout;
+  // window.setTimeout = function(func, delay) {
+  //   // if (delay === 3e4) delay = 3e8;
+  //   // return originSetTimeout.call(this, func, delay);
+  //   if(delay < 50 || delay > 30){
+  //   return originSetTimeout.call(this, func, delay*1000);
+  //   }
+  // }
 
   // click the trial button automatically
   const timer4Btn = setInterval(async () => {
