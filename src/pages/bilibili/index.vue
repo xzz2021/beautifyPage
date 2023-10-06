@@ -46,7 +46,7 @@ const addMask = () => {
 const clickToPlay = async() => {
     let isVideoPage =  location.href.includes('video')
     if(!isVideoPage) return
-    await API.wait(55)
+    await API.wait(30)
     const check = setInterval(() => {
         let pl = $('.bili-paused').length
         console.log("🚀 ~ 每秒钟检查一次视频是否暂停")
@@ -54,7 +54,17 @@ const clickToPlay = async() => {
             console.log("🚀 ~ 检查结束=============")
             clearInterval(check)
             $('.bpx-player-ctrl-btn.bpx-player-ctrl-play').click()
+            const check2 = setInterval(() => {
+            let pl2 = $('.bili-paused').length
+            console.log("🚀 ~ 再次检查")
+            if(pl2 > 0){
+                console.log("🚀 ~ 再次检查结束===")
+                clearInterval(check2)
+                $('.bpx-player-ctrl-btn.bpx-player-ctrl-play').click()
+            }
+        }, 1000);
         }
+
     }, 1000);
 }
 
