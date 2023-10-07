@@ -49,15 +49,15 @@ const originSetTimeout = window.setTimeout;
     //   profile.media.autoplay = false;
       value = JSON.stringify(profile);
     }
-    if(key === "bp_nc_sr22"){
-      const bp = JSON.parse(value);
-    //   let curPro = window.localStorage.getItem("bpx_player_profile")
-    //   let toObj = JSON.parse(curPro)
-    //   let timestamp = toObj.lastView
-    if(!bp) return
-      bp['117145140'].timestamp = 0
-      value = JSON.stringify(bp);
-    }
+    // if(key === "bp_nc_sr22"){
+    //   const bp = JSON.parse(value);
+    // //   let curPro = window.localStorage.getItem("bpx_player_profile")
+    // //   let toObj = JSON.parse(curPro)
+    // //   let timestamp = toObj.lastView
+    // if(!bp) return
+    //   bp['117145140'].timestamp = 0
+    //   value = JSON.stringify(bp);
+    // }
     originSetItem.call(this,key,value)
   }
 }
