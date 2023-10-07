@@ -43,13 +43,13 @@ const originSetTimeout = window.setTimeout;
     // console.log("🚀 ~ file: inject.js:32 ~ coverSetItem ~ key:", key)
     if (key === "bpx_player_profile") {
       const profile = JSON.parse(value);
-      profile.lastView = 0
-    //   profile.lastView = Date.now() - 864e5 
+      // profile.lastView = 0
+      profile.lastView = Date.now() - 864e5 
       profile.media.quality = '80';
     //   profile.media.autoplay = false;
       value = JSON.stringify(profile);
     }
-    if(key === "bp_nc_sr"){
+    if(key === "bp_nc_sr22"){
       const bp = JSON.parse(value);
     //   let curPro = window.localStorage.getItem("bpx_player_profile")
     //   let toObj = JSON.parse(curPro)
@@ -62,7 +62,7 @@ const originSetTimeout = window.setTimeout;
   }
 }
 
-if(location.href.includes('bilibili')) {
+if(location.href.includes('bilibili.com/video')) {
   injectForBilibili()
 }
 
