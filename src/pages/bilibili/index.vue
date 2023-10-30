@@ -28,7 +28,7 @@ const removeDiv = async () => {
 
 const addStyle = () => {   //  动态注入style标签
     const style = `.login-tip,{ display: none; }
-    body .bili-mini-mask,{
+    body .bili-mini-mask, .login-tip{
         display: none !important;
         z-index: -2 !important;
     }`
@@ -105,10 +105,10 @@ const autoHD = async() => {
 
 
 onBeforeMount(() => {
+    addStyle()  // 动态添加样式
 })
 
 onMounted(async () => {
-    addStyle()  // 动态添加样式
     autoHD()
     removeDiv()
     addMask()
