@@ -28,7 +28,7 @@ const removeDiv = async () => {
 
 const addStyle = () => {   //  动态注入style标签
     const style = `.login-tip,{ display: none; }
-    body .bili-mini-mask, .login-tip{
+    body .bili-mini-mask, .login-tip, .vip-login-tip{
         display: none !important;
         z-index: -2 !important;
     }`
