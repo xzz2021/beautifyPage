@@ -23,12 +23,13 @@ const removeDiv = async () => {
         $(rmItems[0]).attr('style', 'display: none;')
         $(rmItems[1]).attr('style', 'display: none;')
         clearInterval(checkRmDiv)        
-    }, 1000);
+    }, 20);
 }
 
 const addStyle = () => {   //  动态注入style标签
     const style = `.login-tip,{ display: none; }
-    body .bili-mini-mask, .login-tip, .vip-login-tip{
+    body .bili-mini-mask, .login-tip, .vip-login-tip, .ad-report.video-card-ad-small, #bannerAd,
+     .channel-layout .eva-banner{
         display: none !important;
         z-index: -2 !important;
     }`
@@ -102,7 +103,17 @@ const autoHD = async() => {
 }
 
 
+//  区分播放量
+const tagPlayNum = () => {
+    $('.bili-video-card__mask ').each(function(){
+        const curSpan = $(this).find('.bili-video-card__stats--item > span')[0]
+        const num = $(curSpan).text()
+        console.log("🚀 ~ file: index.vue:111 ~ $ ~ mm:", mm)
+        // if(num.includes('亿')) return $(this).
+        // num = num.includes('万') ? num.replace('万', '')
 
+    })
+}
 
 onBeforeMount(() => {
     addStyle()  // 动态添加样式
@@ -115,6 +126,7 @@ onMounted(async () => {
     clickToPlay()
     // removeAutoLogin()
     console.log("🚀 ~ file: index.vue:68 ~ onMounted ~ removeAutoLogin:")
+    // tagPlayNum()
 
     
 })
