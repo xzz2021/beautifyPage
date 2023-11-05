@@ -46,7 +46,7 @@ const originSetTimeout = window.setTimeout;
       // profile.lastView = 0
       profile.lastView = Date.now() - 864e5 
       profile.media.quality = '80';
-      profile.media.autoplay = false;
+      // profile.media.autoplay = false;
       value = JSON.stringify(profile);
     }
     // if(key === "bp_nc_sr22"){
