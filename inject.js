@@ -48,6 +48,7 @@ const originSetTimeout = window.setTimeout;
       profile.media.quality = '80';
       // profile.media.autoplay = false;
       value = JSON.stringify(profile);
+      
     }
     // if(key === "bp_nc_sr22"){
     //   const bp = JSON.parse(value);
