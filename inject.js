@@ -48,6 +48,7 @@ const originSetTimeout = window.setTimeout;
       profile.media.quality = '80';
       // profile.media.autoplay = false;
       value = JSON.stringify(profile);
+      // console.log("🚀 ~ file: inject.js:51 ~ injectForBilibili ~ value:", value)
       
     }
     // if(key === "bp_nc_sr22"){
@@ -63,8 +64,32 @@ const originSetTimeout = window.setTimeout;
   }
 }
 
-if(location.href.includes('bilibili.com/video')) {
+const wait = async (seconds) => new Promise((resolve) => setTimeout(resolve, seconds * 1000));
+
+const autoFullscreen = async () => {
+  await wait(3)
+  const checkFull = setInterval(() => {
+      //  此按钮只能手动触发
+      let fullBtn = $('.bpx-player-ctrl-btn.bpx-player-ctrl-full')
+      console.log("🚀 ~ file: index.vue:69 ~ checkFull ~ fullBtn:", fullBtn)
+      if(fullBtn.length == 1){
+          // fullBtn.click() //
+          clearInterval(checkFull)
+          $('.bpx-player-ctrl-btn.bpx-player-ctrl-full').click()
+          // $('#bilibili-player .bpx-player-video-wrap').dblclick()
+          console.log("🚀 ~ file: index.vue:72 ~ checkFull ~ click:")
+          // $('.bpx-player-ctrl-btn.bpx-player-ctrl-full').click()
+      }else{
+
+      }
+  }, 1000)
+
+}
+
+
+if(location.href.includes('bilibili.com/video') || location.href.includes('bilibili.com/list')) {
   injectForBilibili()
+  // autoFullscreen()
 }
 
 

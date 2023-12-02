@@ -44,10 +44,65 @@ const addMask = () => {
 
 }
 
+const addFullFn = () => {
+    document.addEventListener("DOMContentLoaded", function() {
+  const videoElement = document.getElementsByTagName("video");
+
+  videoElement.addEventListener("dblclick", function() {
+    if (videoElement.requestFullscreen) {
+      videoElement.requestFullscreen();
+    } else if (videoElement.mozRequestFullScreen) { // Firefox
+      videoElement.mozRequestFullScreen();
+    } else if (videoElement.webkitRequestFullscreen) { // Chrome, Safari and Opera
+      videoElement.webkitRequestFullscreen();
+    } else if (videoElement.msRequestFullscreen) { // IE/Edge
+      videoElement.msRequestFullscreen();
+    }
+  });
+});
+
+}
+
+const autoFullscreen = async () => {
+    const checkFull = setInterval(() => {
+        //  此按钮只能手动触发
+        let fullBtn = $('.bpx-player-ctrl-btn.bpx-player-ctrl-full')
+        if(fullBtn.length == 1){
+            $('.bpx-player-ctrl-btn.bpx-player-ctrl-full').click()
+            clearInterval(checkFull)
+        }else{
+        }
+    }, 1000)
+
+}
+
+const autoFullscreen000 = async () => {
+    await API.wait(3)
+    const checkFull = setInterval(() => {
+        //  此按钮只能手动触发
+        let fullBtn = $('#bilibili-player .bpx-player-video-wrap video')
+        console.log("🚀 ~ file: index.vue:69 ~ checkFull ~ fullBtn:", fullBtn)
+        if(fullBtn.length == 1){
+            // fullBtn.click() //
+            clearInterval(checkFull)
+            $('#bilibili-player .bpx-player-container').attr('data-screen', 'full')
+
+            console.log("🚀 ~ file: index.vue:72 ~ checkFull ~ click:")
+        }else{
+
+        }
+    }, 1000)
+
+}
+
+
 const clickToPlay = async() => {
     let isVideoPage =  location.href.includes('video')
     if(!isVideoPage) return
+    // 自动全屏
+   
     await API.wait(30)
+    
     const check = setInterval(() => {
         let pl = $('.bili-paused').length
         console.log("🚀 ~ 每秒钟检查一次视频是否暂停")
@@ -82,6 +137,7 @@ const autoHD = async() => {
       window.location.reload();
     }
   }, 200);
+
 
   // const originSetTimeout = window.setTimeout;
   // window.setTimeout = function(func, delay) {
@@ -125,9 +181,9 @@ onMounted(async () => {
     addMask()
     clickToPlay()
     // removeAutoLogin()
-    console.log("🚀 ~ file: index.vue:68 ~ onMounted ~ removeAutoLogin:")
+    // console.log("🚀 ~ file: index.vue:68 ~ onMounted ~ removeAutoLogin:")
     // tagPlayNum()
-
+    // autoFullscreen()
     
 })
 
