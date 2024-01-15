@@ -1,15 +1,6 @@
-/*
- * @Date: 2022-12-13 17:59:03
- * @LastEditors: xzz2021
- * @LastEditTime: 2023-03-04 17:28:09
- */
+import { ElMessage } from 'element-plus'
 
-
-
-import { createApp } from 'vue'
-import popup from './app.vue'
-
-const copy = (el, binding) =>{
+export const copy = (el, binding) =>{
     // el.addEventListener('mouseenter', function(){
     //   el.style.cursor = 'default'
     // })
@@ -22,5 +13,3 @@ const copy = (el, binding) =>{
           })
         })
       }
-
-createApp(popup).directive('copy', copy).mount('#pop')

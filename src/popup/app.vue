@@ -4,20 +4,22 @@
  * @LastEditTime: 2023-03-27 11:52:19
 -->
 <template>
+  <!-- <div @click="history.back()">aaa</div> -->
   <div class="container">
-    <h2>这是一个优化页面的插件,如果出现bug可以到qq群:1078510132反馈!</h2>
-      <div class="hoverArea">扫我进Q群
-      <div class="qrcodeBox"></div>
-    </div>
-    <br/>
-    <h2>如果你不想开启某些平台，可以点<a href="chrome-extension://adlglkhdglepokbbdbjklcpciacjgppc/options.html">这里</a>进行设置！</h2>
+    <el-text class="mx-1"  size="large">这是一个优化页面的插件,如果出现bug可以到qq群:<el-link type="success" v-copy>1078510132</el-link>反馈!</el-text>
+    <el-text  size="large">如果你不想开启某些平台，可以点
+      <!-- <a :href="`chrome-extension://${extensionId}/options.html`">这里</a> -->
+      <el-link type="primary" :href="`chrome-extension://${extensionId}/options.html`">这里</el-link>
+      进行设置！</el-text>
+
   </div>
 </template>
 
 <script setup>
-// import { onMounted } from 'vue';
 
-
+const  backTo = ()=> {
+  
+}
 //函数节流
 const  throttle = (fn,delay) => {
 	//初始时间点
@@ -38,8 +40,9 @@ const  throttle = (fn,delay) => {
 	}
 }
 
-
+const extensionId = ref('')
 onMounted(() => {
+  extensionId.value = chrome.runtime?.id
 
   $(document).ready(function(){
   $('.hoverArea').hover(function(){
@@ -55,6 +58,12 @@ onMounted(() => {
 .container {
   width:300px; 
   height: 360px;
+  // position:relative;
+  display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+  // background: rgba(255, 255, 255, 0.042);
+
   // text-align:center;
   .hoverArea{
     position: relative;
@@ -76,5 +85,17 @@ onMounted(() => {
     
   }
 }
+// .container::before{
+//     content:'';
+//     position:absolute;
+//     top:0;
+//     left:0;
+//     z-index:-1;
+//     background-image: (url('../css/bgc.jpg'));
+//     filter:blur(3px);
+//     background-size:cover;
+//     width:300px; 
+//   height: 360px;
+//   }
 
 </style>
