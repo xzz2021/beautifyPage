@@ -19,6 +19,7 @@ window.API = API
 import platformObj from './src/pages/importPages'
 
 
+import { copy } from './src/api/directive'
 
 
   // 开发模式时  的  自动刷新
@@ -56,6 +57,7 @@ function createEntry(myapp,id){
       const pinia = createPinia()
       // xzzapp.use(appXzz) // register your global components 
       // xzzapp.directive('copy', API.vCopy) // v-directives
+      xzzapp.directive('copy', copy)
       xzzapp.provide('xzzmessage', 'hello')  // 直接写入全局可使用的变量  组件内使用inject('xzzmessage')接收
       xzzapp.use(pinia).mount(`#${id}`)
     }
