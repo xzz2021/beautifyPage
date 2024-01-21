@@ -5,15 +5,45 @@
 -->
 <template>
 
-<!-- <div class="test">
-    <el-button type="primary" @click="test">testtest</el-button>
-</div> -->
+<div class="bilibili_container">
+
+<el-popover
+v-if="isHomepage"
+      :width="300"
+      popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding: 20px;"
+    >
+      <template #reference>
+        <el-avatar src="https://avatars.githubusercontent.com/u/72015883?v=4" />
+      </template>
+      <template #default>
+        <div>高亮播放量高于</div>
+        <el-input-number v-model="limitNum" :precision="2" :step="0.1" :max="1000" />
+        <div>万的视频</div>
+        <el-button type="primary">确定</el-button>
+
+        <el-switch
+    v-model="switchValue"
+    class="ml-2"
+    style="--el-switch-on-color: #13ce66; --el-switch-off-color: #ff4949"
+  />
+      </template>
+    </el-popover>
+
+</div>
+
 </template>
 
 <script setup>
-import { onBeforeMount } from 'vue';
+import { computed, onBeforeMount } from 'vue';
+
+ const isHomepage = ref(false)
+onBeforeMount(() => {
+    isHomepage.value = !(location.href.includes('video') || location.href.includes('list'))
+})
 
 
+const switchValue = ref(false)
+const limitNum = ref(50)
 // let removeArr = ['.right-entry .right-entry-item', ]
 const removeDiv = async () => {
     // removeArr.map(item => API.checkExistHide(item))
@@ -159,17 +189,49 @@ const autoHD = async() => {
   }, 200);
 }
 
-
+const throttleFlag = ref(false)
 //  区分播放量
-const tagPlayNum = () => {
-    $('.bili-video-card__mask ').each(function(){
+const tagPlayNum = async() => {
+  if(throttleFlag.value) return
+  // console.log("🚀 ~ tagPlayNum ~ throttleFlag.value:", throttleFlag.value)
+  await API.wait(2)
+  throttleFlag.value = true
+    $('.bili-video-card.is-rcmd').each(function(){
+      let hasChecked = $(this).attr("hasChecked")
+      if(hasChecked) return
         const curSpan = $(this).find('.bili-video-card__stats--item > span')[0]
-        const num = $(curSpan).text()
-        console.log("🚀 ~ file: index.vue:111 ~ $ ~ mm:", mm)
-        // if(num.includes('亿')) return $(this).
-        // num = num.includes('万') ? num.replace('万', '')
+        let num = $(curSpan).text()
+        // if(num.includes('亿')) return  $(this)[0].style.border = '3px solid yellow'
+        // if(Number(num) > limitNum.value) $(this)[0].style.border = '5px solid #f800ff'
+        // console.log("🚀 ~ $ ~ limitNum.value:", limitNum.value)
+        // if(Number(num) > limitNum.value) $(this)[0].classList.add('addStyle')
+        if(num.includes('亿')) $(this).addClass('addStyle')
+        num = num.includes('万') ? num.replace('万', '') : '0'
+        if(Number(num) > limitNum.value) $(this).addClass('addStyle')
+
+      $(this).attr("hasChecked",true)
 
     })
+    throttleFlag.value = false
+    
+}
+
+const computeScroll = () =>{
+  document.addEventListener("scroll", (e) => {
+    // console.log("🚀 ~ document.addEventListener ~ e:", e)
+    const clientHeight = e.target.body.clientHeight
+      const scrollHeight = e.target.body.scrollHeight
+      const scrollTop = document.documentElement.scrollTop
+      let bottomHeight = scrollHeight - clientHeight - scrollTop
+      if(bottomHeight < 800) {
+          tagPlayNum()
+        }
+  })
+}
+const chooseAddStyle =() => {
+  tagPlayNum()
+
+  computeScroll()
 }
 
 onBeforeMount(() => {
@@ -185,12 +247,22 @@ onMounted(async () => {
     // console.log("🚀 ~ file: index.vue:68 ~ onMounted ~ removeAutoLogin:")
     // tagPlayNum()
     // autoFullscreen()
+    // 首页列表  高亮 播放数多的  项目
+    isHomepage.value && chooseAddStyle()
+    // console.log("🚀 ~ onMounted ~ chrome:", chrome)
+
     
 })
 
 
 </script>
 <style  lang='scss' scoped>
+.bilibili_container{
+  position: fixed;
+    bottom: 30px;
+    left: 20px;
+    z-index: 66;
+}
 
 </style>
 

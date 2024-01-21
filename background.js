@@ -55,3 +55,9 @@ const platformArr = [
     }
   }
     )
+
+//     chrome.cookies.getAllCookieStores(
+//       (cookieStores)=>{
+//         console.log("🚀 ~ file: index.vue:68 ~ onMounted ~ cookieStores:", cookieStores)
+//       }
+// )

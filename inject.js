@@ -71,13 +71,11 @@ const autoFullscreen = async () => {
   const checkFull = setInterval(() => {
       //  此按钮只能手动触发
       let fullBtn = $('.bpx-player-ctrl-btn.bpx-player-ctrl-full')
-      console.log("🚀 ~ file: index.vue:69 ~ checkFull ~ fullBtn:", fullBtn)
       if(fullBtn.length == 1){
           // fullBtn.click() //
           clearInterval(checkFull)
           $('.bpx-player-ctrl-btn.bpx-player-ctrl-full').click()
           // $('#bilibili-player .bpx-player-video-wrap').dblclick()
-          console.log("🚀 ~ file: index.vue:72 ~ checkFull ~ click:")
           // $('.bpx-player-ctrl-btn.bpx-player-ctrl-full').click()
       }else{
 
