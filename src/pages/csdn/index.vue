@@ -11,7 +11,7 @@
 
 let removeArr = ['.programmer1Box', '#recommendAdBox', '.box-shadow.mb8', '#footerRightAds', '#asideNewNps',
                     '#asideNewComments', '#recommendNps',  '.recommend-ask-box.has-bg',
-                '.csdn-toolbar-creative-mp', '.write-guide-buttom-box']
+                '.csdn-toolbar-creative-mp', '.write-guide-buttom-box', '#mys-wrapper', '#remuneration']
 const removeAD = () => {
     removeArr.map(item => API.checkExistHide(item))
 }

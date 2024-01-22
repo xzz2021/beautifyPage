@@ -40,8 +40,18 @@ const closeAd = () => {
 const removeRedirect = () => {
   $('a').each(function (index, item) {
     let rawUrl = $(this).attr('href')
-    if (rawUrl?.includes('link.jianshu')) {
-      let newUrl = rawUrl.replace('https://link.jianshu.com/?t=', '')
+    if (rawUrl?.includes('link.jianshu') ||rawUrl?.includes('links.jianshu')) {
+      let newUrl = ''
+      const splitUrlArr = rawUrl.split('=')
+      console.log("🚀 ~ splitUrlArr:", splitUrlArr)
+      if(splitUrlArr.length > 2) {
+       newUrl = rawUrl.replace(rawUrl.split('=')[0], '')
+        
+      }else if(splitUrlArr.length == 2) {
+        newUrl = rawUrl.split('=')[1]
+      }
+      newUrl = decodeURIComponent(newUrl)
+      console.log("🚀 ~ newUrl:", newUrl)
       $(this).attr('href', newUrl)
     }
   })
