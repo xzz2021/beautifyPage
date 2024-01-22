@@ -4,18 +4,10 @@
  * @LastEditTime: 2023-04-15 11:59:48
 -->
 <template>
-<!-- <div>
-    tsesjgf
-</div> -->
-<!-- <div class="test">
-    <el-button type="primary" @click="test">testtest</el-button>
-</div> -->
+
 </template>
 
 <script setup>
-
-
-
 
     
     //关注弹窗          //  顶部登录按钮               // 侧栏广告       专栏文章页登录 'ColumnPageHeader-profile'
@@ -33,15 +25,6 @@ const removeLogins = () => {
     API.isExist('.AuthorInfo') && $('.AuthorInfo').css('max-width', '1000px') 
     // setTimeout(() => checkExistHide('.css-1hwwfws') , 800)  //顶部登录浮窗  出现比较晚,所以需要延迟移除
 }
-
-// const scrollRemove = async () => {
-//             // let height = $(window).scrollTop()
-//             // console.log("🚀 ~ file: index.vueght:", height)
-//           if($('.css-1ynzxqw').length == 1 ){
-//                 $('.css-1ynzxqw').remove()
-//                 $(window).off('scroll', scrollRemove)  //  执行完移除事件本身
-//           }
-// }
 
 const removeRedirect = () => {
     $('a').each(function(index, item){
@@ -65,7 +48,6 @@ const test = async() => {
 }
 
 const addStyle = () => {   //  动态注入style标签
-
     const style = ".css-1hwwfws, .css-1ynzxqw, .css-woosw9, .css-i9srcr{ display: none; }"
     API.appendStyle(style)  
 }
