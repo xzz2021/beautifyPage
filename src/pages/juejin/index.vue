@@ -72,9 +72,29 @@ const addStyle = () => {
 
 }
 
+const removeRedirect = () => {
+  $('a').each(function (index, item) {
+    let rawUrl = $(this).attr('href')
+    if (rawUrl?.includes('link.juejin') || rawUrl?.includes('target')) {
+      let newUrl = ''
+      const splitUrlArr = rawUrl.split('=')
+      if(splitUrlArr.length > 2) {
+       newUrl = rawUrl.replace(rawUrl.split('=')[0], '')
+      }else if(splitUrlArr.length == 2) {
+        newUrl = rawUrl.split('=')[1]
+      }
+      newUrl = decodeURIComponent(newUrl)
+      $(this).attr('href', newUrl)
+    }
+  })
+}
+
+
+
 onMounted(async() => {
     addStyle() // 动态添加样式
 
+    removeRedirect()  // 移除重定向
     // removeLogins()  // 点击以及移除初始弹窗
     await allowCopy2()
 
