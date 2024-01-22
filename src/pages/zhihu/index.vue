@@ -70,6 +70,36 @@ const addStyle = () => {   //  动态注入style标签
     API.appendStyle(style)  
 }
 
+const computeScroll = async () =>{
+    const scrollTop = document.documentElement.scrollTop
+    if(scrollTop  > 700){
+    await API.wait(0.8)
+        rmAdDiv()  // 移除广告
+    }else{
+        document.addEventListener("scroll", async function addListen(e) {
+    const scrollTop2 = document.documentElement.scrollTop
+    if(scrollTop2  > 700){
+        await API.wait(0.8)
+          rmAdDiv()  // 移除广告
+          document.removeEventListener("scroll", addListen)
+            }
+      
+        })
+
+    }
+
+}
+// 获取右下角悬浮登录弹窗
+const rmAdDiv = () => {
+    $('img').each(function(index, item){
+        const src = $(this).attr('src')
+        if(src == 'https://static.zhihu.com/heifetz/assets/liukanshan-peek.a71ecf3e.png'){
+            // 随便重置类名， 以使模块失效
+            $(this).parent().parent().parent().attr('class', 'jyiugjh')
+        }
+    })
+}
+
 onMounted(async() => {
     addStyle()  // 动态添加样式
 
@@ -79,6 +109,8 @@ onMounted(async() => {
     // $(window).scroll(scrollRemove)  //监听滚动后右下角出现的登录弹窗
 
     removeRedirect()  //  屏蔽知乎重定向,直连第三方站点
+    computeScroll()  //  监听滚动事件
+
     
 })
 
