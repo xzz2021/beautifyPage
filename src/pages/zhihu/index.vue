@@ -83,7 +83,6 @@ const computeScroll = async () =>{
           rmAdDiv()  // 移除广告
           document.removeEventListener("scroll", addListen)
             }
-      
         })
 
     }
