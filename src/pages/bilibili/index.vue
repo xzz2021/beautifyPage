@@ -199,23 +199,26 @@ const tagPlayNum = async() => {
     $('.bili-video-card.is-rcmd').each(function(){
       let hasChecked = $(this).attr("hasChecked")
       if(hasChecked) return
+      $(this).attr("hasChecked",true)
         const curSpan = $(this).find('.bili-video-card__stats--item > span')[0]
         let num = $(curSpan).text()
+        // 移除广告项目
+        if(num.length == 0) return  $(this).attr('style', 'display: none')
+        // if(num )
         // if(num.includes('亿')) return  $(this)[0].style.border = '3px solid yellow'
         // if(Number(num) > limitNum.value) $(this)[0].style.border = '5px solid #f800ff'
         // console.log("🚀 ~ $ ~ limitNum.value:", limitNum.value)
         // if(Number(num) > limitNum.value) $(this)[0].classList.add('addStyle')
-        if(num.includes('亿')) $(this).addClass('addStyle')
+        if(num.includes('亿')) return $(this).addClass('addStyle')
         num = num.includes('万') ? num.replace('万', '') : '0'
         if(Number(num) > limitNum.value) $(this).addClass('addStyle')
 
 
         // 移除广告项目
-        const adItem = $(this).find('.bili-video-card__image--link').attr('data-target-url')
+        // const adItem = $(this).find('.bili-video-card__image--link').attr('data-target-url')
         // console.log("🚀 ~ $ ~ adItem:", adItem) 正常长度为43
-        adItem && adItem.length > 50 && $(this).attr('style', 'display: none')
+        // adItem && adItem.length > 50 && $(this).attr('style', 'display: none')
 
-      $(this).attr("hasChecked",true)
 
     })
     throttleFlag.value = false
