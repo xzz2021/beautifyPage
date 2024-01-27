@@ -209,6 +209,12 @@ const tagPlayNum = async() => {
         num = num.includes('万') ? num.replace('万', '') : '0'
         if(Number(num) > limitNum.value) $(this).addClass('addStyle')
 
+
+        // 移除广告项目
+        const adItem = $(this).find('.bili-video-card__image--link').attr('data-target-url')
+        // console.log("🚀 ~ $ ~ adItem:", adItem) 正常长度为43
+        adItem && adItem.length > 50 && $(this).attr('style', 'display: none')
+
       $(this).attr("hasChecked",true)
 
     })
