@@ -53,7 +53,20 @@ const platformArr = [
         sendResponse(res)})()
          return true
     }
+    if(message.type === 'clearCookies') {
+      (async () => {
+        // 先获取所有cookie
+        chrome.cookies.getAll({domain: message.config.domain}, function(cookies) {
+          for(var i=0; i<cookies.length;i++) {
+            const protocol = cookies[i].secure ? 'https:' : 'http:';
+              chrome.cookies.remove({url: `${protocol}//${cookies[i].domain}${cookies[i].path}`, name: cookies[i].name, storeId: cookies[i].storeId});
+          }
+      })
+        sendResponse('测试清除cookies')})()
+         return true
+    }
   }
+
     )
 
 //     chrome.cookies.getAllCookieStores(
@@ -61,3 +74,11 @@ const platformArr = [
 //         console.log("🚀 ~ file: index.vue:68 ~ onMounted ~ cookieStores:", cookieStores)
 //       }
 // )
+
+
+// async function getCookie() {
+//   const cookieArr = await chrome.cookies.getAll({ domain: 'bilibili.com'})
+//   console.log("🚀 ~ getCookie ~ cookieArr:", cookieArr)
+// }
+
+// getCookie()

@@ -7,7 +7,7 @@
     "service_worker": "background.js" 
   },
   "permissions": ["storage", "activeTab", "tabs", "contextMenus", "scripting", "downloads", "cookies"],
-  "host_permissions": ["*://*.跨域请求网站api时需要在此处定义.com/*"],
+  "host_permissions": ["*://*.跨域请求网站api时需要在此处定义.com/*", "<all_urls>"],
   "action": {
     "default_title": "popup.html",
     "default_icon": "logo.png",

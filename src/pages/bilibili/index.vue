@@ -16,16 +16,15 @@ v-if="isHomepage"
         <el-avatar src="https://avatars.githubusercontent.com/u/72015883?v=4" />
       </template>
       <template #default>
-        <div>高亮播放量高于</div>
-        <el-input-number v-model="limitNum" :precision="2" :step="0.1" :max="1000" />
-        <div>万的视频</div>
-        <el-button type="primary">确定</el-button>
-
-        <el-switch
+        <div>是否开启:  <el-switch
     v-model="switchValue"
     class="ml-2"
+    label="开启高亮"
     style="--el-switch-on-color: #13ce66; --el-switch-off-color: #ff4949"
-  />
+/></div>
+        <div>指定播放量: 
+        <el-input-number  v-model="limitNum" :precision="0" :step="1" :max="1000" size="small"/></div>
+
       </template>
     </el-popover>
 
@@ -42,7 +41,7 @@ onBeforeMount(() => {
 })
 
 
-const switchValue = ref(false)
+const switchValue = ref(true)
 const limitNum = ref(50)
 // let removeArr = ['.right-entry .right-entry-item', ]
 const removeDiv = async () => {
@@ -176,9 +175,11 @@ const autoHD = async() => {
 const throttleFlag = ref(false)
 //  区分播放量
 const tagPlayNum = async() => {
+  // 先判断 是否开启了此功能
+  if(!switchValue.value) return
+  //  再判断是否 处于 节流状态
   if(throttleFlag.value) return
   throttleFlag.value = true
-  // await API.wait(1)
     $('.bili-video-card.is-rcmd').each(function(){
       let hasChecked = $(this).attr("hasChecked")
       if(hasChecked) return
@@ -212,6 +213,14 @@ const tagPlayNum = async() => {
 //   })
 // }
 
+const checkLimit = async() => {
+  const limitLoginBtn = $('.footer-unlogin-guide')
+  if(limitLoginBtn.length == 0) return
+  // 如果 此div存在 则 需要清除cookies  并刷新页面
+   await API.sendMessage({type: 'clearCookies', config:{ domain: 'bilibili.com'}})
+  window.location.reload()
+}
+
 const rawScrollHeight = ref(0)
 const addOnScrollEvent = () => {
   // 鼠标监听 滚动事件 会 导致 内存 极大 增加
@@ -222,7 +231,9 @@ const addOnScrollEvent = () => {
         tagPlayNum()
         rawScrollHeight.value = scrollHeight
       }
-  }, 1500);
+      //  此处还需要监听频繁 请求 限流 , 如果限流需要清除cookies 否则不会加载 新的 列表
+      checkLimit()
+  }, 1500)
 }
 
 
