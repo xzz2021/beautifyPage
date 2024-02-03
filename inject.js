@@ -4,6 +4,7 @@
  * @LastEditTime: 2023-04-14 17:08:10
  */
 
+import{ contentApi as API} from './src/api/contentApi/index'
 
 //  eval 函数的是否允许执行  取决于  站点的 限制
 
@@ -27,9 +28,11 @@ window.addEventListener('xzz', (params)=> {
 
 
 
-const injectForBilibili = () => {
-
-
+const injectForBilibili = async () => {
+  
+  // const status = await biliStatus()
+  // if(!status) return
+  // console.log("🚀 ~ injectForBilibili ================~ injectForBilibili:")
 //  b站覆写setTimeout
 const originSetTimeout = window.setTimeout;
   window.setTimeout = function(func, delay) {
@@ -40,26 +43,18 @@ const originSetTimeout = window.setTimeout;
 
   const originSetItem = window.localStorage.setItem;
   window.localStorage.setItem = function(key, value) {
-    // console.log("🚀 ~ file: inject.js:32 ~ coverSetItem ~ key:", key)
     if (key === "bpx_player_profile") {
-      const profile = JSON.parse(value);
+      const profile = JSON.parse(value)
+      // 默认关闭弹幕
+      const dmStatus = profile.dmSetting.dmSwitch
+      dmStatus && (profile.dmSetting.dmSwitch = false)
       // profile.lastView = 0
       profile.lastView = Date.now() - 864e5 
       profile.media.quality = '80';
       // profile.media.autoplay = false;
       value = JSON.stringify(profile);
-      // console.log("🚀 ~ file: inject.js:51 ~ injectForBilibili ~ value:", value)
       
     }
-    // if(key === "bp_nc_sr22"){
-    //   const bp = JSON.parse(value);
-    // //   let curPro = window.localStorage.getItem("bpx_player_profile")
-    // //   let toObj = JSON.parse(curPro)
-    // //   let timestamp = toObj.lastView
-    // if(!bp) return
-    //   bp['117145140'].timestamp = 0
-    //   value = JSON.stringify(bp);
-    // }
     originSetItem.call(this,key,value)
   }
 }
@@ -84,13 +79,17 @@ const autoFullscreen = async () => {
 
 }
 
-
+const biliStatus = async () => {
+  //  检查当前平台开关是否开启
+  const openPlatformArr = await API.Storage.get('platformArr') || []
+  const checkSwitch = openPlatformArr.find(item => item.name == "bilibili")?.status
+  console.log("🚀 ~ checkSwitch:", checkSwitch)
+  return checkSwitch
+}
 if(location.href.includes('bilibili.com/video') || location.href.includes('bilibili.com/list')) {
+      
   injectForBilibili()
   // autoFullscreen()
 }
-
-
-
 
 

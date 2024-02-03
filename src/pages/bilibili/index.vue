@@ -33,16 +33,30 @@ v-if="isHomepage"
 </template>
 
 <script setup>
-import { computed, onBeforeMount } from 'vue';
+import { computed, onBeforeMount, onBeforeUnmount, onUpdated } from 'vue';
 
  const isHomepage = ref(false)
-onBeforeMount(() => {
+ const limitNum = ref(30)
+onBeforeMount(async () => {
     isHomepage.value = !(location.href.includes('video') || location.href.includes('list'))
+    limitNum.value = await API.Storage.get('playNum') || 50
+    console.log("🚀 ~ onBeforeMount ~ limitNum.value:", limitNum.value)
 })
+
+onUpdated(async ()=> {
+  // await API.Storage.set({playNum: limitNum.value})
+  console.log("🚀 ~ onBeforeUnmount ~ limitNum.value:", limitNum.value)
+  debugger
+})
+
+// setInterval(async ()=> {
+//   console.log("🚀 ~ onBeforeUnmount ~ limitNum.value:", limitNum.value)
+//   // await API.Storage.set({playNum: limitNum.value})
+
+// }, 2000)
 
 
 const switchValue = ref(true)
-const limitNum = ref(50)
 // let removeArr = ['.right-entry .right-entry-item', ]
 const removeDiv = async () => {
     // removeArr.map(item => API.checkExistHide(item))
@@ -161,15 +175,15 @@ const autoHD = async() => {
       clearInterval(timer4Url);
       window.location.reload();
     }
-  }, 200);
+  }, 1000);
 
   const timer4Btn = setInterval(async () => {
     const trialBtn = document.querySelector('.bpx-player-toast-confirm-login');
     if (trialBtn) {
-      trialBtn.click()
       clearInterval(timer4Btn);
+      trialBtn.click()
     }
-  }, 200);
+  }, 1000);
 }
 
 const throttleFlag = ref(false)
