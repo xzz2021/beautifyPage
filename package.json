@@ -1,18 +1,14 @@
 {
   "name": "purifypage",
   "version": "1.0.2",
-  "description": "",
+  "description": "chrome extension for purifiy web page",
   "main": "index.js",
   "scripts": {
     "start": "webpack server",
     "build": "webpack --env=production --mode=production",
     "watch": "webpack --watch --mode=development --env=development"
   },
-  "keywords": [
-    "chrome",
-    "extension",
-    "autoReload"
-  ],
+  "keywords": [ "chrome", "extension", "autoReload" ],
   "author": "xzz2022",
   "license": "ISC",
   "dependencies": {

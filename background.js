@@ -5,19 +5,9 @@
  */
 
 
-//---------------引入分文件的所有自定义api-----------
+//---------------引入分文件的所有自定义api---------缺点---没有ts类型推导--
 import { bgcApi as API } from './src/api/bgcApi/index'
 
-
-// async function aa() {
-//    await API.rest(5)
-//    console.log("🚀 ~ file: background.js:13 ~ aa ~ aa:")
-   
-// }
-// aa()
-// autoreload   自动刷新
-// import { bgdListenMsg } from 'ws-reload-plugin'
-//    bgdListenMsg()
 
 const platformArr = [
    { platform: '知乎', name: 'zhihu', status: true },
@@ -44,7 +34,6 @@ const platformArr = [
        bgdListenMsg()
    }
 
-
    chrome.runtime.onMessage.addListener(
     (message, sender, sendResponse) => {
       if(message.type === 'myfetch') {
@@ -68,17 +57,3 @@ const platformArr = [
   }
 
     )
-
-//     chrome.cookies.getAllCookieStores(
-//       (cookieStores)=>{
-//         console.log("🚀 ~ file: index.vue:68 ~ onMounted ~ cookieStores:", cookieStores)
-//       }
-// )
-
-
-// async function getCookie() {
-//   const cookieArr = await chrome.cookies.getAll({ domain: 'bilibili.com'})
-//   console.log("🚀 ~ getCookie ~ cookieArr:", cookieArr)
-// }
-
-// getCookie()

@@ -29,10 +29,6 @@ window.addEventListener('xzz', (params)=> {
 
 
 const injectForBilibili = async () => {
-  
-  // const status = await biliStatus()
-  // if(!status) return
-  // console.log("🚀 ~ injectForBilibili ================~ injectForBilibili:")
 //  b站覆写setTimeout
 const originSetTimeout = window.setTimeout;
   window.setTimeout = function(func, delay) {
@@ -53,7 +49,6 @@ const originSetTimeout = window.setTimeout;
       profile.media.quality = '80';
       // profile.media.autoplay = false;
       value = JSON.stringify(profile);
-      
     }
     originSetItem.call(this,key,value)
   }
@@ -70,8 +65,6 @@ const autoFullscreen = async () => {
           // fullBtn.click() //
           clearInterval(checkFull)
           $('.bpx-player-ctrl-btn.bpx-player-ctrl-full').click()
-          // $('#bilibili-player .bpx-player-video-wrap').dblclick()
-          // $('.bpx-player-ctrl-btn.bpx-player-ctrl-full').click()
       }else{
 
       }

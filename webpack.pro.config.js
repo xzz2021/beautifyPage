@@ -4,17 +4,13 @@
  * @LastEditTime: 2023-04-15 10:24:20
  */
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
-
 const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-
 //----------此插件可以清除注释,console,debugger以及指定不需要的内容--------
 const TerserWebpackPlugin = require('terser-webpack-plugin')
-
-
 
 const proconfig = {
     mode: 'production',
@@ -26,12 +22,10 @@ const proconfig = {
             // minify: TerserWebpackPlugin.uglifyJsMinify,   //集 JavaScript 解析器，压缩器，美化器于一身
             terserOptions: {
                 // minify: {
-
                 // },
                 format: {
                   comments: false,//删除所有注释
                 //   ecma: 6,   //期待输出的es版本
-
                 },
                 compress: {
                   drop_console: true, // 移除所有console.log
@@ -48,7 +42,6 @@ const proconfig = {
             {from: 'public/logo.png', to: './logo.png'},
             {from: 'public/manifestPro.json', to: './manifest.json'}
         ]}),
-
         new MiniCssExtractPlugin({
             // 使用此plugin后, 会分别生成content.css,options.css,popup.css
             // content.css需要在manifest声明引入,因为content只有js注入,未引入编译后的css文件
@@ -65,7 +58,6 @@ const proconfig = {
             "AUTHOR": JSON.stringify('user'),
             'DEBUG': false
           }),
-
     ],
     module: {  
         rules: [
@@ -84,7 +76,6 @@ const proconfig = {
         ],
     },
     // externals: {}, //在生产模式引入指定模块外链cdn的情况下,忽略指定的模块不进行打包
-
 }
 
 module.exports = proconfig
