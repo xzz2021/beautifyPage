@@ -89,3 +89,15 @@ API.injectFile()
 
 
 
+//liaoxuefeng  临时添加 博客站  广告屏蔽
+
+if(location.host.includes('liaoxuefeng')) {
+  // x-sidebar-left-bottom
+  const hideTag = ["#x-sidebar-left-bottom", ".adsbygoogle.adsbygoogle-noablate", "#x-content-bottom"]
+  let str = ``
+  hideTag.map(item => {
+    str += `${item}{ display: none !important;}`
+  })
+    API.appendStyle(str)         
+
+}
