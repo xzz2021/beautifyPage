@@ -11,7 +11,7 @@
 
 let removeArr = ['.programmer1Box', '#recommendAdBox', '.box-shadow.mb8', '#footerRightAds', '#asideNewNps',
                     '#asideNewComments', '#recommendNps',  '.recommend-ask-box.has-bg',
-                '.csdn-toolbar-creative-mp', '.write-guide-buttom-box', '#mys-wrapper', '#remuneration']
+                '.csdn-toolbar-creative-mp', '.write-guide-buttom-box', '#mys-wrapper', "#asideWriteGuide",'#remuneration']
 const removeAD = () => {
     removeArr.map(item => API.checkExistHide(item))
 }
@@ -27,7 +27,7 @@ const allowCopy = () => {
             // dom结构判断       //  向上寻找祖先元素                   // 查找同层兄弟元素
             let existDom = $(this).closest('code').length == 0 ?  $(this).siblings('code') : $(this).closest('code')
             let allCode = existDom[0].innerText.replace('\n\n一键复制', '')  //  获取到当前块所有代码内容
-            console.log("🚀 ~ file: index.vue:31 ~ allCode:", allCode)
+            // console.log("🚀 ~ file: index.vue:31 ~ allCode:", allCode)
             // return
             navigator.clipboard.writeText(allCode)   //   复制到剪切板
             ElMessage({ message: '复制成功!!!', type: 'success' })
@@ -68,7 +68,9 @@ const removeRedirect = () => {
 }
 
 const addStyle = () => {   //  动态注入style标签
-    const style = `.hljs-button-xzz{
+    const removeDiv = [".tool-active-list", ".passport-container-mini-tip", ".passport-login-container", 
+    ".sidetool-writeguide-box", ".passport-login-tip-container"]
+    let style = `.hljs-button-xzz{
                     position: absolute;
                     right: 0px;
                     top: 0px;
@@ -80,13 +82,9 @@ const addStyle = () => {   //  动态注入style标签
                     border-radius: 4px;
                     cursor: pointer;
                     box-shadow: 0 2px 4px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.05);
-                }
-                .more-toolbox-new .tool-active .tool-active-list, .passport-container-mini-tip,.tool-active-list{
-                    display: none !important;
-                }
-                .passport-login-container, .sidetool-writeguide-box{
-                    display: none;
                 }`
+    style += removeDiv.map(item => `${item}{display: none !important;}`).join('')
+    
     API.appendStyle(style)  
 }
 

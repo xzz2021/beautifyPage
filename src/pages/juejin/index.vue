@@ -52,22 +52,15 @@ const allowCopy2 = async () => {  //   一键复制
 }
 
 const addStyle = () => {
+  const removeDiv = [".global-component-box", ".login-guide-wrap", ".nav-item.auth", ".bottom-login-guide"]
     let style = `.code-block-extension-copyCodeBtn-xzz{
                     font-size: 12px;
                     margin-left: 10px;
                     cursor: pointer;
                     color: hsla(0,0%,54.9%,.8);
                     transition: color .1s;
-                 }
-                 .global-component-box{
-                    display: none;
-                 }
-                 .login-guide-wrap{
-                    display: none;
-                 }
-                 .nav-item.auth{
-                    display: none;
                  }`
+    style += removeDiv.map(item => `${item}{display: none !important;}`).join('')
     API.appendStyle(style)         
 
 }

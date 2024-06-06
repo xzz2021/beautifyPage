@@ -12,7 +12,7 @@
     
     //关注弹窗          //  顶部登录按钮               // 侧栏广告       专栏文章页登录 'ColumnPageHeader-profile'
 let removeArr = ['.css-1ynzxqw33', '.AppHeader-profile', '.Question-sideColumn', '.ColumnPageHeader-profile',
-                 ]
+                 '.jyiugjh', '.css-yoby3j', '#container']
 
 const removeLogins = () => {
     setTimeout(() => API.checkExistClick('.Modal-closeButton'), 5) // 登录弹窗 带蒙层  所以借由点击关闭
@@ -21,7 +21,7 @@ const removeLogins = () => {
     // 宽度由问题页父元素Question-main 决定
     API.isExist('.Question-mainColumn') && $('.Question-mainColumn').css('width', '100%')    // 主题内容宽度重置为100%
     //  知乎热点页面判断
-    API.isExist('.Question-main') && API.isExist('.ContentItem-actions') && $('.ContentItem-actions').css('width', '1000px')    // 底栏和主题内容同宽
+    API.isExist('.Question-main') && API.isExist('.ContentItem-actions') && $('.ContentItem-actions').css('width', '100%')    // 底栏和主题内容同宽
     API.isExist('.AuthorInfo') && $('.AuthorInfo').css('max-width', '1000px') 
     // setTimeout(() => checkExistHide('.css-1hwwfws') , 800)  //顶部登录浮窗  出现比较晚,所以需要延迟移除
 }
@@ -48,37 +48,24 @@ const test = async() => {
 }
 
 const addStyle = () => {   //  动态注入style标签
-    const style = ".css-1hwwfws, .css-1ynzxqw, .css-woosw9, .css-i9srcr{ display: none; }"
+    const removeDiv = ['.css-1hwwfws', '.css-1ynzxqw', '.css-woosw9', '.css-i9srcr', '.jyiugjh', '.css-1wq6v87', '.ContentItem-rightButton', '.Pc-word']
+    let style = ``
+     style += removeDiv.map(item => `${item}{display: none !important;}`).join('')
     API.appendStyle(style)  
 }
 
-const computeScroll = async () =>{
-    const scrollTop = document.documentElement.scrollTop
-    if(scrollTop  > 700){
-    await API.wait(0.8)
-        rmAdDiv()  // 移除广告
-    }else{
-        document.addEventListener("scroll", async function addListen(e) {
-    const scrollTop2 = document.documentElement.scrollTop
-    if(scrollTop2  > 700){
-        await API.wait(0.8)
-          rmAdDiv()  // 移除广告
-          document.removeEventListener("scroll", addListen)
-            }
-        })
-
-    }
-
-}
-// 获取右下角悬浮登录弹窗
-const rmAdDiv = () => {
-    $('img').each(function(index, item){
-        const src = $(this).attr('src')
-        if(src == 'https://static.zhihu.com/heifetz/assets/liukanshan-peek.a71ecf3e.png'){
-            // 随便重置类名， 以使模块失效
-            $(this).parent().parent().parent().attr('class', 'jyiugjh')
-        }
-    })
+const removeLimit = () => {
+    // 解除知乎登录才能查看完整内容的限制
+    $('div[class*="RichContent--unescapable"]').each(function() {
+                // 获取当前元素的所有类名
+                const classNames = $(this).attr('class').split(' ');
+                // 过滤出不包含 RichContent--unescapable 的类名
+                const newClassNames = classNames.filter(function(className) {
+                    return className !== 'RichContent--unescapable';
+                });
+                // 更新元素的类名
+                $(this).attr('class', newClassNames.join(' '));
+            });
 }
 
 onMounted(async() => {
@@ -86,12 +73,13 @@ onMounted(async() => {
 
     removeLogins()  // 点击以及移除初始弹窗
 
-    //  此方案 已 废弃   直接类 隐藏  即可
-    // $(window).scroll(scrollRemove)  //监听滚动后右下角出现的登录弹窗
-
     removeRedirect()  //  屏蔽知乎重定向,直连第三方站点
-    computeScroll()  //  监听滚动事件
-
+    // await API.wait(1)
+    
+    
+    removeLimit()
+                
+            
     
 })
 

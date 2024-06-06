@@ -87,4 +87,3 @@ if(location.href.includes('bilibili.com/video') || location.href.includes('bilib
   // autoFullscreen()
 }
 
-

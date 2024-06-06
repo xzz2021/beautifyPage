@@ -59,12 +59,16 @@ const removeRedirect = () => {
 
 const addStyle = () => {
   //  动态注入style标签
-  const style = ''
+  const removeDiv = ["._3Pnjry", "._23ISFX", "._23ISFX-mask"]
+  let style = `body{
+    overflow: auto !important;
+  }`
+  style += removeDiv.map(item => `${item}{display: none !important;}`).join('')
   API.appendStyle(style)
 }
 
 onMounted(async () => {
-  // addStyle()  // 动态添加样式
+  addStyle()  // 动态添加样式
   console.log("🚀 ~ file: 71====启动检查===========")
 
   beautifyPage()
