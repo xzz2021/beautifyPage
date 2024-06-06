@@ -42,10 +42,12 @@ const originSetTimeout = window.setTimeout;
     if (key === "bpx_player_profile") {
       const profile = JSON.parse(value)
       // 默认关闭弹幕
-      const dmStatus = profile.dmSetting.dmSwitch
-      dmStatus && (profile.dmSetting.dmSwitch = false)
+      // const dmStatus = profile.dmSetting.dmSwitch
+      // dmStatus && (profile.dmSetting.dmSwitch = false)
       // profile.lastView = 0
-      profile.lastView = Date.now() - 864e5 
+      profile.lastView = Date.now() + 864e10
+      // 新增属性变更  解除b站试看一次限制
+      profile.lastUnlogintrialView = Date.now() + 864e10;
       profile.media.quality = '80';
       // profile.media.autoplay = false;
       value = JSON.stringify(profile);
