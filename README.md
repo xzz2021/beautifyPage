@@ -1,4 +1,6 @@
 
+**此版本将废弃,之后转移到使用react重构的版本,可以查看仓库[optimize-website](https://github.com/xzz2021/optimize-website)**
+
 **这是一个谷歌chrome浏览器插件，用于屏蔽pc常用网站的登录限制,广告,各种弹窗,代码一键复制，让自己聚焦于信息主体**
 
 使用油猴或第三方插件不放心,所以写一个自己用,同时作为开源项目,基于[我的插件脚手架](https://github.com/xzz2021/crx-cli)开发
